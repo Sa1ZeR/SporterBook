@@ -1,0 +1,13 @@
+server:
+  port: 3000
+
+spring:
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+
+  datasource:
+    url: jdbc:postgresql://localhost/sporterbook
+    username: postgres
+    password: 123456
