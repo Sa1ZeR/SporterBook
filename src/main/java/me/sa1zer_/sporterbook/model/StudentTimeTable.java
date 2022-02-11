@@ -21,6 +21,6 @@ public class StudentTimeTable extends BaseEntity {
     private LocalDateTime dateEnd;
 
     @OneToMany(cascade = {CascadeType.MERGE, CascadeType.MERGE, CascadeType.PERSIST})
-    @JoinColumn(name = "ssr_id")
+    @JoinColumn(name = "timetabe_id")
     private Set<StudentSectionRoom> ssr;
 }
