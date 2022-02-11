@@ -20,15 +20,7 @@ public class StudentTimeTable extends BaseEntity {
     @Column(name = "date_end")
     private LocalDateTime dateEnd;
 
-    @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
-    @JoinTable(name = "api_students_to_timetable", joinColumns = {@JoinColumn(name = "stt")},
-            inverseJoinColumns = {@JoinColumn(name = "sid")})
-    private Set<Student> studentsTimeTable = new HashSet<>();
-
-    @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
-    @JoinTable(name = "api_sections_to_timetable", joinColumns = {@JoinColumn(name = "timetable_id")},
-            inverseJoinColumns = {@JoinColumn(name = "section_id")})
-    private Set<SportSection> section = new HashSet<>();
-
-    //todo where
+    @OneToMany(cascade = {CascadeType.MERGE, CascadeType.MERGE, CascadeType.PERSIST})
+    @JoinColumn(name = "ssr_id")
+    private Set<StudentSectionRoom> ssr;
 }

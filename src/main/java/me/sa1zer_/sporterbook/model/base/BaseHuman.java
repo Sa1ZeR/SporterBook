@@ -4,6 +4,7 @@ import lombok.Data;
 
 import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
+import java.time.LocalDateTime;
 
 @MappedSuperclass
 @Data
@@ -23,6 +24,9 @@ public class BaseHuman extends BaseEntity {
 
     @Column(columnDefinition = "smallint DEFAULT 0")
     protected boolean sex;
+
+    @Column(nullable = false)
+    private LocalDateTime birth;
 
     @Column(columnDefinition = "VARCHAR(13)")
     protected String phone;
