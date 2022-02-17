@@ -1,11 +1,13 @@
 package me.sa1zer_.sporterbook.model.base;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
 import java.time.LocalDateTime;
 
+@EqualsAndHashCode(callSuper = true)
 @MappedSuperclass
 @Data
 public class BaseHuman extends BaseEntity {
@@ -22,8 +24,17 @@ public class BaseHuman extends BaseEntity {
     @Column(columnDefinition = "VARCHAR(64)", nullable = false, unique = true)
     protected String email;
 
+    @Column(columnDefinition = "VARCHAR(24)", nullable = false, unique = true)
+    protected String login;
+
+    @Column(columnDefinition = "VARCHAR(64)", nullable = false)
+    protected String password;
+
     @Column(columnDefinition = "smallint DEFAULT 0")
     protected boolean sex;
+
+    @Column(name = "is_active", columnDefinition = "smallint DEFAULT 0")
+    protected boolean active;
 
     @Column(nullable = false)
     private LocalDateTime birth;

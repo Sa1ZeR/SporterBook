@@ -11,3 +11,9 @@ spring:
     url: jdbc:postgresql://localhost/sporterbook
     username: postgres
     password: 123456
+
+jwt:
+  token:
+    secret: TestSecret
+    expired: 3600000 #for production use 10-15 min
+
