@@ -13,6 +13,7 @@ import java.util.Set;
 @Entity
 @Table(name = "api_trainer_timeTable")
 @Data
+@Deprecated
 public class TrainerTimeTable extends BaseEntity {
 
     @Column(name = "date_start")

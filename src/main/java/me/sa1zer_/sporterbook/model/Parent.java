@@ -13,6 +13,7 @@ import java.util.Set;
 @Entity
 @Table(name = "api_parants")
 @Data
+@Deprecated
 public class Parent extends BaseHuman {
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST})

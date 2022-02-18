@@ -8,6 +8,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "api_students_to_timetable")
 @Data
+@Deprecated
 public class StudentSectionRoom {
 
     @Id

@@ -13,6 +13,7 @@ import java.time.LocalDateTime;
 @Entity
 @Data
 @Table(name = "api_trainters")
+@Deprecated
 public class Trainer extends BaseHuman {
 
     private LocalDateTime created;

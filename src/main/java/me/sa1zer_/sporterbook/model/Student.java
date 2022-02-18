@@ -13,6 +13,7 @@ import java.util.Set;
 @Entity
 @Table(name = "api_students")
 @Data
+@Deprecated
 public class Student extends BaseHuman {
 
     private LocalDateTime created;

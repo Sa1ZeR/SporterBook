@@ -2,18 +2,56 @@ package me.sa1zer_.sporterbook.model;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import me.sa1zer_.sporterbook.model.base.BaseHuman;
+import me.sa1zer_.sporterbook.model.base.BaseEntity;
 
-import javax.persistence.Entity;
-import javax.persistence.PrePersist;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
 
 @EqualsAndHashCode(callSuper = true)
 @Entity
 @Table(name = "api_users")
 @Data
-public class User extends BaseHuman {
+public class User extends BaseEntity {
+
+    @Column(name = "first_name", columnDefinition = "VARCHAR(48)", nullable = false)
+    protected String fistName;
+
+    @Column(name = "last_name", columnDefinition = "VARCHAR(48)", nullable = false)
+    protected String LastName;
+
+    @Column(columnDefinition = "VARCHAR(48)", nullable = false)
+    protected String patronymic;
+
+    @Column(columnDefinition = "VARCHAR(64)", nullable = false, unique = true)
+    protected String email;
+
+    @Column(columnDefinition = "VARCHAR(24)", nullable = false, unique = true)
+    protected String login;
+
+    @Column(columnDefinition = "VARCHAR(64)", nullable = false)
+    protected String password;
+
+    @Column(columnDefinition = "smallint DEFAULT 0")
+    protected boolean sex;
+
+    @Column(name = "is_active", columnDefinition = "smallint DEFAULT 0")
+    protected boolean active;
+
+    @Column(nullable = false)
+    private LocalDateTime birth;
+
+    @Column(columnDefinition = "VARCHAR(13)")
+    protected String phone;
+
+    @OneToMany(mappedBy = "user_id", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    private Set<UserAttribute> attributes = new HashSet<>();
+
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinTable(name = "user_children", joinColumns = {@JoinColumn(name = "parent_id")},
+            inverseJoinColumns = {@JoinColumn(name = "child_id")})
+    private Set<User> children = new HashSet<>();
 
     private LocalDateTime created;
 

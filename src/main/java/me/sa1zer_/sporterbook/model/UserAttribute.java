@@ -3,28 +3,28 @@ package me.sa1zer_.sporterbook.model;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import me.sa1zer_.sporterbook.model.base.BaseEntity;
-import me.sa1zer_.sporterbook.model.enums.LogType;
 import me.sa1zer_.sporterbook.model.enums.Role;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @EqualsAndHashCode(callSuper = true)
+@Table(name = "api_user_attributes")
 @Entity
-@Table(name = "api_logs")
 @Data
-public class Log extends BaseEntity {
+public class UserAttribute extends BaseEntity {
 
-    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH})
+    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JoinColumn(name = "user_id", nullable = false)
-    private User userId;
+    private User user;
 
     @Enumerated
     @Column(nullable = false)
     private Role role;
 
-    @Column(columnDefinition = "TEXT")
-    private String message;
+    @Column(name = "attr_id")
+    private Long atrId;
 
-    @Enumerated
-    private LogType type;
+    @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    private Set<TimeTableInfo> timeTableInfo;
 }

@@ -11,17 +11,15 @@ import java.util.Set;
 
 @EqualsAndHashCode(callSuper = true)
 @Entity
-@Table(name = "api_student_timetable")
+@Table(name = "api_timetable")
 @Data
-@Deprecated
-public class StudentTimeTable extends BaseEntity {
+public class TimeTable extends BaseEntity {
 
-    @Column(name = "date_start")
+    @Column(name = "date_start", nullable = false)
     private LocalDateTime dateStart;
-    @Column(name = "date_end")
+    @Column(name = "date_end", nullable = false)
     private LocalDateTime dateEnd;
 
-    @OneToMany(cascade = {CascadeType.MERGE, CascadeType.MERGE, CascadeType.PERSIST})
-    @JoinColumn(name = "timetabe_id")
-    private Set<StudentSectionRoom> ssr;
+    @OneToMany(mappedBy = "timeTable", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    private Set<TimeTableInfo> timeTableInfos = new HashSet<>();
 }
