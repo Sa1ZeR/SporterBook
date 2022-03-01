@@ -1,6 +1,7 @@
 package me.sa1zer_.sporterbook.validator;
 
 import me.sa1zer_.sporterbook.annotation.Phone;
+import org.springframework.util.StringUtils;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
@@ -15,6 +16,6 @@ public class PhoneValidator implements ConstraintValidator<Phone, String> {
 
     @Override
     public boolean isValid(String value, ConstraintValidatorContext context) {
-        return PATTERN.matcher(value).matches();
+        return StringUtils.hasText(value) && PATTERN.matcher(value).matches();
     }
 }

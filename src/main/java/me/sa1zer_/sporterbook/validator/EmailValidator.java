@@ -1,6 +1,7 @@
 package me.sa1zer_.sporterbook.validator;
 
 import me.sa1zer_.sporterbook.annotation.Email;
+import org.springframework.util.StringUtils;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
@@ -13,6 +14,6 @@ public class EmailValidator implements ConstraintValidator<Email, String> {
 
     @Override
     public boolean isValid(String value, ConstraintValidatorContext context) {
-        return EMAIL_PATTERN.matcher(value).matches();
+        return StringUtils.hasText(value) && EMAIL_PATTERN.matcher(value).matches();
     }
 }
