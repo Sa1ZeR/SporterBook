@@ -9,7 +9,5 @@ import java.util.Optional;
 @NoRepositoryBean
 public interface HumanRepository<T, ID> extends JpaRepository<T, ID> {
 
-    Role role = Role.UNKNOWN;
-
     Optional<T> findByLoginOrEmail(String login, String email);
 }

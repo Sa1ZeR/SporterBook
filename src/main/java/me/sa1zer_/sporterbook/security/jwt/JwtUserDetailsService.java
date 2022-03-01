@@ -1,14 +1,11 @@
 package me.sa1zer_.sporterbook.security.jwt;
 
-import me.sa1zer_.sporterbook.model.enums.Role;
-import me.sa1zer_.sporterbook.repository.base.HumanRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import me.sa1zer_.sporterbook.model.User;
+import me.sa1zer_.sporterbook.repository.UserRepository;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 public class JwtUserDetailsService implements UserDetailsService {
@@ -17,15 +14,26 @@ public class JwtUserDetailsService implements UserDetailsService {
 
     //private final Map<Role, HumanRepository<?, ?>> repositories = new ConcurrentHashMap<>();
 
-    private final List<HumanRepository<?, ?>> repositories;
+    //private final List<HumanRepository<?, ?>> repositories;
 
-    @Autowired
-    public JwtUserDetailsService(List<HumanRepository<?, ?>> repositories) {
-        this.repositories = repositories;
+    //    @Autowired
+//    public JwtUserDetailsService(List<HumanRepository<?, ?>> repositories) {
+//        this.repositories = repositories;
+//    }
+
+    private final UserRepository userRepository;
+
+    public JwtUserDetailsService(UserRepository userRepository) {
+        this.userRepository = userRepository;
     }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        User user = userRepository.findByLoginOrEmail(username, username)
+                .orElseThrow(() -> new UsernameNotFoundException(
+                        String.format("User with %s login or email not found", username)));
+        return JwtUserFactory.createJwtUser(user);
+
 //        String login = username.split(USERNAME_SPLITTER)[0];
 //        Role role = Role.valueOf(username.split(USERNAME_SPLITTER)[1].toUpperCase());
 

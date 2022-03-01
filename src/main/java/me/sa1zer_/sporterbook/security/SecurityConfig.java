@@ -25,17 +25,16 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 )
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-
     private final JwtAuthenticationEntryPoint authenticationEntryPoint;
-    private final JwtTokenProvider jwtTokenProvider;
     private final JwtUserDetailsService userDetailsService;
+    private final JwtTokenProvider jwtTokenProvider;
 
     public SecurityConfig(JwtAuthenticationEntryPoint authenticationEntryPoint,
-                          JwtTokenProvider jwtTokenProvider,
-                          JwtUserDetailsService userDetailsService) {
+                          JwtUserDetailsService userDetailsService,
+                          JwtTokenProvider jwtTokenProvider) {
         this.authenticationEntryPoint = authenticationEntryPoint;
-        this.jwtTokenProvider = jwtTokenProvider;
         this.userDetailsService = userDetailsService;
+        this.jwtTokenProvider = jwtTokenProvider;
     }
 
     @Override

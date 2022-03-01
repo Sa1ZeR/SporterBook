@@ -42,7 +42,7 @@ public class JwtTokenProvider {
         claims.put("login", username);
         claims.put("email", user.getEmail());
         claims.put("id", user.getId());
-        //claims.put("defaultRole", user.getAuthorities());
+        //claims.put("roles", user.getAuthorities());
 
         return Jwts.builder()
                 .setSubject(username)
@@ -84,22 +84,14 @@ public class JwtTokenProvider {
         return Long.parseLong((String) claims.get("id"));
     }
 
-    public Role getRole(String token) {
-        Claims claims = Jwts.parser().setSigningKey(secret).parseClaimsJws(token)
-                .getBody();
-
-        String role = (String)claims.get("defaultRole");
-        return Role.valueOf(role.toUpperCase());
-    }
-
     public Authentication getAuthentication(String token) {
 //        JwtUser jwtUser = (JwtUser) userDetailsService.loadUserByUsername(createLoginWithRole(
 //                getUser(token), getRole(token)));
-        JwtUser jwtUser = (JwtUser) userDetailsService.loadUserByUsername(getUser(
-                getUser(token)));
+        JwtUser jwtUser = (JwtUser) userDetailsService.loadUserByUsername(getUser(token));
         return new UsernamePasswordAuthenticationToken(jwtUser, "", jwtUser.getAuthorities());
     }
 
+    @Deprecated
     public String createLoginWithRole(String username, Role role) {
         return username + JwtUserDetailsService.USERNAME_SPLITTER + role.name();
     }

@@ -17,3 +17,6 @@ jwt:
     secret: TestSecret
     expired: 3600000 #for production use 10-15 min
 
+common:
+  cors-ip: localhost:8080
+

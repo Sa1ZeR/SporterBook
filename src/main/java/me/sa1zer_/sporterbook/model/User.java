@@ -45,7 +45,7 @@ public class User extends BaseEntity {
     @Column(columnDefinition = "VARCHAR(13)")
     protected String phone;
 
-    @OneToMany(mappedBy = "user_id", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @OneToMany(mappedBy = "user", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private Set<UserAttribute> attributes = new HashSet<>();
 
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
