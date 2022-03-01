@@ -44,7 +44,7 @@ public class JwtTokenProvider {
         claims.put("id", user.getId());
         //claims.put("roles", user.getAuthorities());
 
-        return Jwts.builder()
+        return SecurityConstants.TOKEN_PREFIX + Jwts.builder()
                 .setSubject(username)
                 .setClaims(claims)
                 .setIssuedAt(now).setExpiration(expired)

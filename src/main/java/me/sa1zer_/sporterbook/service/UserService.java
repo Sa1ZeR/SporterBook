@@ -1,25 +1,19 @@
 package me.sa1zer_.sporterbook.service;
 
 import me.sa1zer_.sporterbook.model.User;
-import me.sa1zer_.sporterbook.repository.UserRepository;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.stereotype.Service;
+import me.sa1zer_.sporterbook.payload.request.SignUpRequest;
 
-@Service
-public class UserService {
+public interface UserService{
 
-    private final UserRepository userRepository;
+    User findUserByLoginOrEmail(String login, String email);
 
-    public UserService(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
+    User getUserByLoginOrEmail(String login, String email);
 
-    public User findUserByLoginOrEmail(String login, String email) {
-        return userRepository.findByLoginOrEmail(login, email).orElseThrow(
-                () -> new UsernameNotFoundException(String.format("User with %s or %s not found!", login, email)));
-    }
+    User findById(Long id);
 
-    public User getUserByLoginOrEmail(String login, String email) {
-        return userRepository.findByLoginOrEmail(login, email).orElse(null);
-    }
+    User save(User user);
+
+    void delete(User user);
+
+    User createUserFromRequest(SignUpRequest request);
 }

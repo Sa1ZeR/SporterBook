@@ -34,9 +34,9 @@ public class User extends BaseEntity {
     protected String password;
 
     @Column(columnDefinition = "smallint DEFAULT 0")
-    protected boolean sex;
+    protected short sex;
 
-    @Column(name = "is_active", columnDefinition = "smallint DEFAULT 0")
+    @Column(name = "is_active")
     protected boolean active;
 
     @Column(nullable = false)
