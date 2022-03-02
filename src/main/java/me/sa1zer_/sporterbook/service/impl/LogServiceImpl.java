@@ -32,11 +32,6 @@ public class LogServiceImpl implements LogService {
     }
 
     @Override
-    public List<Log> findByRole(Role role) {
-        return logRepository.findByRole(role);
-    }
-
-    @Override
     public List<Log> findByLogType(LogType type) {
         return logRepository.findByType(type);
     }

@@ -14,7 +14,5 @@ public interface LogRepository extends JpaRepository<Log, Long> {
 
     List<Log> findByUserId(User user);
 
-    List<Log> findByRole(Role role);
-
     List<Log> findByType(LogType type);
 }

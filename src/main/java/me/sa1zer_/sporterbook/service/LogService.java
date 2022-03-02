@@ -13,8 +13,6 @@ public interface LogService {
 
     List<Log> findByUser(User user);
 
-    List<Log> findByRole(Role role);
-
     List<Log> findByLogType(LogType type);
 
     Log newLog(String message, User user, LogType logType);
