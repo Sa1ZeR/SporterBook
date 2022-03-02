@@ -1,8 +1,8 @@
-package me.sa1zer_.sporterbook.model;
+package me.sa1zer_.sporterbook.domain.model;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import me.sa1zer_.sporterbook.model.base.BaseHuman;
+import me.sa1zer_.sporterbook.domain.model.base.BaseHuman;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;

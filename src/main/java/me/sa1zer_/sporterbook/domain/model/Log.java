@@ -1,12 +1,13 @@
-package me.sa1zer_.sporterbook.model;
+package me.sa1zer_.sporterbook.domain.model;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import me.sa1zer_.sporterbook.model.base.BaseEntity;
-import me.sa1zer_.sporterbook.model.enums.LogType;
-import me.sa1zer_.sporterbook.model.enums.Role;
+import me.sa1zer_.sporterbook.domain.model.base.BaseEntity;
+import me.sa1zer_.sporterbook.domain.model.enums.LogType;
+import me.sa1zer_.sporterbook.domain.model.enums.Role;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @EqualsAndHashCode(callSuper = true)
 @Entity
@@ -18,13 +19,17 @@ public class Log extends BaseEntity {
     @JoinColumn(name = "user_id", nullable = false)
     private User userId;
 
-    @Enumerated
-    @Column(nullable = false)
-    private Role role;
-
     @Column(columnDefinition = "TEXT")
     private String message;
 
     @Enumerated
     private LogType type;
+
+    private LocalDateTime created;
+
+    @PrePersist
+    public void onCreate() {
+        created = LocalDateTime.now();
+    }
+
 }

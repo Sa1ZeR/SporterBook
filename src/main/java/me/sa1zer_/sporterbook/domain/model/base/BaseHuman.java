@@ -1,4 +1,4 @@
-package me.sa1zer_.sporterbook.model.base;
+package me.sa1zer_.sporterbook.domain.model.base;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;

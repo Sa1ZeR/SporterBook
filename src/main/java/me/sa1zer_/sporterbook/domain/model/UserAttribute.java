@@ -1,11 +1,12 @@
-package me.sa1zer_.sporterbook.model;
+package me.sa1zer_.sporterbook.domain.model;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import me.sa1zer_.sporterbook.model.base.BaseEntity;
-import me.sa1zer_.sporterbook.model.enums.Role;
+import me.sa1zer_.sporterbook.domain.model.base.BaseEntity;
+import me.sa1zer_.sporterbook.domain.model.enums.Role;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @EqualsAndHashCode(callSuper = true)
@@ -13,6 +14,9 @@ import java.util.Set;
 @Entity
 @Data
 public class UserAttribute extends BaseEntity {
+
+    @Column(name = "attr_id")
+    private Long atrId;
 
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JoinColumn(name = "user_id", nullable = false)
@@ -22,9 +26,6 @@ public class UserAttribute extends BaseEntity {
     @Column(nullable = false)
     private Role role;
 
-    @Column(name = "attr_id")
-    private Long atrId;
-
     @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
-    private Set<TimeTableInfo> timeTableInfo;
+    private Set<TimeTableInfo> timeTableInfo = new HashSet<>();
 }

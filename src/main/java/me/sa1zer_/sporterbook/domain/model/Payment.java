@@ -1,9 +1,9 @@
-package me.sa1zer_.sporterbook.model;
+package me.sa1zer_.sporterbook.domain.model;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import me.sa1zer_.sporterbook.model.base.BaseEntity;
-import me.sa1zer_.sporterbook.model.enums.Role;
+import me.sa1zer_.sporterbook.domain.model.base.BaseEntity;
+import me.sa1zer_.sporterbook.domain.model.enums.Role;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;

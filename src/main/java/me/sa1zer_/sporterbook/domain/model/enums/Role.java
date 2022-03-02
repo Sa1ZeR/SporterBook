@@ -1,4 +1,4 @@
-package me.sa1zer_.sporterbook.model.enums;
+package me.sa1zer_.sporterbook.domain.model.enums;
 
 public enum Role {
 

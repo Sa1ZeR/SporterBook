@@ -1,6 +1,6 @@
 package me.sa1zer_.sporterbook.security.jwt;
 
-import me.sa1zer_.sporterbook.model.User;
+import me.sa1zer_.sporterbook.domain.model.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 

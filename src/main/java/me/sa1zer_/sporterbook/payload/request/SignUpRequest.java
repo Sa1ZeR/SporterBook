@@ -5,6 +5,7 @@ import lombok.Data;
 import me.sa1zer_.sporterbook.annotation.Email;
 import me.sa1zer_.sporterbook.annotation.Login;
 import me.sa1zer_.sporterbook.annotation.Phone;
+import me.sa1zer_.sporterbook.domain.model.enums.Role;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.NotBlank;
@@ -50,6 +51,9 @@ public class SignUpRequest {
     @NotNull(message = "Не указана дата рождения!")
     @JsonFormat(shape= JsonFormat.Shape.STRING, pattern = "yyyy.MM.dd")
     private Date birth;
+
+    @NotNull(message = "Роль не может быть пустой!")
+    private Role role;
 
     private short sex;
 

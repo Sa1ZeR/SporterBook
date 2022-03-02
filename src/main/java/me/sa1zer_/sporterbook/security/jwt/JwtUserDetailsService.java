@@ -1,6 +1,6 @@
 package me.sa1zer_.sporterbook.security.jwt;
 
-import me.sa1zer_.sporterbook.model.User;
+import me.sa1zer_.sporterbook.domain.model.User;
 import me.sa1zer_.sporterbook.repository.UserRepository;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

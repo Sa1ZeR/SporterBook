@@ -1,6 +1,6 @@
 package me.sa1zer_.sporterbook.service;
 
-import me.sa1zer_.sporterbook.model.User;
+import me.sa1zer_.sporterbook.domain.model.User;
 import me.sa1zer_.sporterbook.payload.request.SignUpRequest;
 
 public interface UserService{

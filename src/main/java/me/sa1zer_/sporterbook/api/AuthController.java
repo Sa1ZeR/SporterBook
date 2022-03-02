@@ -1,13 +1,17 @@
 package me.sa1zer_.sporterbook.api;
 
+import me.sa1zer_.sporterbook.domain.LogConstants;
+import me.sa1zer_.sporterbook.domain.model.enums.LogType;
 import me.sa1zer_.sporterbook.payload.response.SuccessLoginResponse;
 import me.sa1zer_.sporterbook.security.jwt.JwtTokenProvider;
+import me.sa1zer_.sporterbook.service.LogService;
 import me.sa1zer_.sporterbook.service.UserService;
-import me.sa1zer_.sporterbook.model.User;
+import me.sa1zer_.sporterbook.domain.model.User;
 import me.sa1zer_.sporterbook.payload.request.SignInRequest;
 import me.sa1zer_.sporterbook.payload.request.SignUpRequest;
 import me.sa1zer_.sporterbook.payload.response.MessageResponse;
 import me.sa1zer_.sporterbook.utils.HttpUtils;
+import org.springframework.core.log.LogMessage;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -27,11 +31,14 @@ public class AuthController {
     private final UserService userService;
     private final AuthenticationManager authenticationManager;
     private final JwtTokenProvider tokenProvider;
+    private final LogService logService;
 
-    public AuthController(UserService userService, AuthenticationManager authenticationManager, JwtTokenProvider tokenProvider) {
+    public AuthController(UserService userService, AuthenticationManager authenticationManager,
+                          JwtTokenProvider tokenProvider, LogService logService) {
         this.userService = userService;
         this.authenticationManager = authenticationManager;
         this.tokenProvider = tokenProvider;
+        this.logService = logService;
     }
 
 
@@ -44,8 +51,10 @@ public class AuthController {
                 new UsernamePasswordAuthenticationToken(request.getLogin(), request.getPassword()));
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
-
         String token = tokenProvider.generateToken(authentication);
+
+        User user = userService.findUserByLoginOrEmail(request.getLogin(), request.getLogin());
+        logService.newLog(LogConstants.LOG_NEW_USER, user, LogType.COMMON);
 
         return ResponseEntity.ok(new SuccessLoginResponse(token));
     }
@@ -64,7 +73,8 @@ public class AuthController {
             return ResponseEntity.badRequest().body(
                     new MessageResponse("Пользователь с таким логином или email уже существует"));
         else user = userService.createUserFromRequest(request);
-        userService.save(user);
+
+        logService.newLog(LogConstants.LOG_NEW_USER, user, LogType.COMMON);
 
         return ResponseEntity.ok(new MessageResponse(200, "Успешная регистрация!"));
     }

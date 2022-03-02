@@ -1,4 +1,4 @@
-package me.sa1zer_.sporterbook.model;
+package me.sa1zer_.sporterbook.domain.model;
 
 import lombok.Data;
 
