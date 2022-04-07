@@ -1,6 +1,7 @@
 package me.sa1zer_.sporterbook.service.impl;
 
 import me.sa1zer_.sporterbook.domain.model.User;
+import me.sa1zer_.sporterbook.domain.model.enums.Role;
 import me.sa1zer_.sporterbook.payload.request.SignUpRequest;
 import me.sa1zer_.sporterbook.repository.UserRepository;
 import me.sa1zer_.sporterbook.service.UserAttributeService;
@@ -10,6 +11,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.ZoneId;
+import java.util.List;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -42,6 +44,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public List<User> findAll() {
+        return userRepository.findAll();
+    }
+
+    @Override
     public User save(User user) {
         return userRepository.save(user);
     }
@@ -69,7 +76,7 @@ public class UserServiceImpl implements UserService {
                 .toLocalDateTime());
 
         user.getAttributes().add(
-                attributeService.createUserAttribute(user, request.getRole()));
+                attributeService.createUserAttribute(user, Role.USER));
         user.setActive(true);
 
         return save(user);

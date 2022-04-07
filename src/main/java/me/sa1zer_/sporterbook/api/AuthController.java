@@ -2,6 +2,8 @@ package me.sa1zer_.sporterbook.api;
 
 import me.sa1zer_.sporterbook.domain.LogConstants;
 import me.sa1zer_.sporterbook.domain.model.enums.LogType;
+import me.sa1zer_.sporterbook.payload.dto.UserDto;
+import me.sa1zer_.sporterbook.payload.facade.UserFacade;
 import me.sa1zer_.sporterbook.payload.response.SuccessLoginResponse;
 import me.sa1zer_.sporterbook.security.jwt.JwtTokenProvider;
 import me.sa1zer_.sporterbook.service.LogService;
@@ -41,7 +43,6 @@ public class AuthController {
         this.logService = logService;
     }
 
-
     @PostMapping("signin")
     public ResponseEntity<?> signIn(@Valid @RequestBody SignInRequest request, BindingResult result) {
         ResponseEntity<?> errors = HttpUtils.validBindingResult(result);
@@ -56,7 +57,8 @@ public class AuthController {
         User user = userService.findUserByLoginOrEmail(request.getLogin(), request.getLogin());
         logService.newLog(LogConstants.LOG_NEW_USER, user, LogType.COMMON);
 
-        return ResponseEntity.ok(new SuccessLoginResponse(token));
+        UserDto userDto = UserFacade.userToUserDto(user);
+        return ResponseEntity.ok(new SuccessLoginResponse(userDto, token));
     }
 
     @PostMapping("signup")
@@ -69,9 +71,10 @@ public class AuthController {
                     new MessageResponse(400, "Пароли должны совпадать"));
 
         User user = userService.getUserByLoginOrEmail(request.getLogin(), request.getEmail());
+
         if(!ObjectUtils.isEmpty(user))
             return ResponseEntity.badRequest().body(
-                    new MessageResponse("Пользователь с таким логином или email уже существует"));
+                    new MessageResponse(400, "Пользователь с таким логином или email уже существует"));
         else user = userService.createUserFromRequest(request);
 
         logService.newLog(LogConstants.LOG_NEW_USER, user, LogType.COMMON);
