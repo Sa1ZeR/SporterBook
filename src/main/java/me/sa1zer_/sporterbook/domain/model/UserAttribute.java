@@ -9,14 +9,11 @@ import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
-@EqualsAndHashCode(callSuper = true)
+@EqualsAndHashCode(of = {"atrId", "user", "role"}, callSuper = true)
 @Table(name = "api_user_attributes")
 @Entity
 @Data
 public class UserAttribute extends BaseEntity {
-
-    @Column(name = "attr_id")
-    private Long atrId;
 
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JoinColumn(name = "user_id", nullable = false)
@@ -25,6 +22,9 @@ public class UserAttribute extends BaseEntity {
     @Enumerated
     @Column(nullable = false)
     private Role role;
+
+    @Column(name = "attr_id")
+    private Long atrId;
 
     @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     private Set<TimeTableInfo> timeTableInfo = new HashSet<>();

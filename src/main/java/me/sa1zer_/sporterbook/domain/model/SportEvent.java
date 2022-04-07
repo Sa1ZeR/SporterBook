@@ -19,7 +19,7 @@ public class SportEvent extends BaseEntity {
     private String name;
 
     @OneToMany(cascade = {CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
-    private Set<Student> members = new HashSet<>();
+    private Set<User> members = new HashSet<>();
 
     //todo who?
 

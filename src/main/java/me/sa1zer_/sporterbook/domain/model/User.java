@@ -1,17 +1,19 @@
 package me.sa1zer_.sporterbook.domain.model;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.*;
 import me.sa1zer_.sporterbook.domain.model.base.BaseEntity;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
-@EqualsAndHashCode(callSuper = true)
+@EqualsAndHashCode(of = {"fistName", "LastName", "patronymic", "email", "login",
+                "password", "birth", "phone", "created"}, callSuper = true)
 @Entity
 @Table(name = "api_users")
+@RequiredArgsConstructor
 @Data
 public class User extends BaseEntity {
 

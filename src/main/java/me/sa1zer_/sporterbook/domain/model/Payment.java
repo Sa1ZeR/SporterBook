@@ -20,7 +20,7 @@ public class Payment extends BaseEntity {
 
     @ManyToOne
     @JoinColumn(name = "student_id", nullable = false)
-    private Student student;
+    private User student;
 
     @Column(name = "user_id")
     private Long userId;
