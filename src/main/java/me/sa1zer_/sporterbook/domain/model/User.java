@@ -1,6 +1,7 @@
 package me.sa1zer_.sporterbook.domain.model;
 
 import lombok.*;
+import me.sa1zer_.sporterbook.domain.Sex;
 import me.sa1zer_.sporterbook.domain.model.base.BaseEntity;
 
 import javax.persistence.*;
@@ -35,8 +36,9 @@ public class User extends BaseEntity {
     @Column(columnDefinition = "VARCHAR(64)", nullable = false)
     protected String password;
 
-    @Column(columnDefinition = "smallint DEFAULT 0")
-    protected short sex;
+    @Enumerated()
+    @Column(columnDefinition = "SMALLINT default 0")
+    protected Sex sex;
 
     @Column(name = "is_active")
     protected boolean active;

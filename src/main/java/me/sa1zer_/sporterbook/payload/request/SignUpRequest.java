@@ -5,6 +5,7 @@ import lombok.Data;
 import me.sa1zer_.sporterbook.annotation.Email;
 import me.sa1zer_.sporterbook.annotation.Login;
 import me.sa1zer_.sporterbook.annotation.Phone;
+import me.sa1zer_.sporterbook.domain.Sex;
 import me.sa1zer_.sporterbook.domain.model.enums.Role;
 
 import javax.validation.constraints.NotBlank;
@@ -47,6 +48,6 @@ public class SignUpRequest {
     @JsonFormat(shape= JsonFormat.Shape.STRING, pattern = "yyyy.MM.dd")
     private Date birth;
 
-    private short sex;
+    private Sex sex;
 
 }

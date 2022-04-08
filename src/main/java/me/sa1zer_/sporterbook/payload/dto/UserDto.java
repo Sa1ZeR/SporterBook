@@ -2,6 +2,7 @@ package me.sa1zer_.sporterbook.payload.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
+import me.sa1zer_.sporterbook.domain.Sex;
 
 import java.time.LocalDateTime;
 
@@ -14,7 +15,7 @@ public class UserDto {
     private String lastName;
     private String patronymic;
     private String phone;
-    private short sex;
+    private Sex sex;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd.MM.yyyy")
     private LocalDateTime birth;
