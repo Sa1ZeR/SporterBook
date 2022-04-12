@@ -1,6 +1,7 @@
 package me.sa1zer_.sporterbook.validator;
 
 import me.sa1zer_.sporterbook.annotation.Login;
+import org.springframework.util.StringUtils;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
@@ -12,6 +13,6 @@ public class LoginValidator implements ConstraintValidator<Login, String> {
 
     @Override
     public boolean isValid(String value, ConstraintValidatorContext context) {
-        return pattern.matcher(value).matches();
+        return StringUtils.hasText(value) && pattern.matcher(value).matches();
     }
 }

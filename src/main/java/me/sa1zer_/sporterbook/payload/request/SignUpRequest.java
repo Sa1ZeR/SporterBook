@@ -16,13 +16,13 @@ import java.util.Date;
 @Data
 public class SignUpRequest {
 
-    @NotBlank(message = "Имя не может быть мустым")
+    @NotBlank(message = "Имя не может быть пустым")
     private String firstName;
 
-    @NotBlank(message = "Фамилия не может быть мустым")
+    @NotBlank(message = "Фамилия не может быть пустым")
     private String latName;
 
-    @NotBlank(message = "Отчество не может быть мустым")
+    @NotBlank(message = "Отчество не может быть пустым")
     private String patronymic;
 
     @Login
