@@ -31,6 +31,4 @@ public class TimeTableInfo extends BaseEntity {
     @ManyToOne(cascade = {CascadeType.MERGE})
     @JoinColumn(name = "user_id", nullable = false)
     private User user; //for who
-
-    //todo trainers, but column user_id must be trainer. how???
 }
