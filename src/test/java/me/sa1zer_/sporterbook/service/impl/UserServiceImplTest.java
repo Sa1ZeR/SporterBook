@@ -65,7 +65,6 @@ class UserServiceImplTest {
         user.setLogin("Sa1ZeR_");
         user.setEmail("test@mail.ru");
         user.setPhone("+79033333333");
-        user.setSex((short) 0);
         user.setPassword(passwordEncoder.encode("12345678"));
         user.setBirth(LocalDateTime.now());
         user.setActive(true);
@@ -88,7 +87,6 @@ class UserServiceImplTest {
         user.setLogin("Sa1ZeR_");
         user.setEmail("test@mail.ru");
         user.setPassword(passwordEncoder.encode("12345678"));
-        user.setBirth(LocalDateTime.now());
 
         when(userRepository.save(Mockito.any(User.class)))
                 .thenAnswer(i -> i.getArguments()[0]);
@@ -107,7 +105,6 @@ class UserServiceImplTest {
         user.setLogin("Sa1ZeR_");
         user.setEmail("test@mail.ru");
         user.setPassword(passwordEncoder.encode("12345678"));
-        user.setBirth(LocalDateTime.now());
 
         when(userRepository.save(Mockito.any(User.class)))
                 .thenAnswer(i -> i.getArguments()[0]);

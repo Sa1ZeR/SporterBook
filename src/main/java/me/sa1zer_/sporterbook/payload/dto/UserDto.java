@@ -2,7 +2,7 @@ package me.sa1zer_.sporterbook.payload.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
-import me.sa1zer_.sporterbook.domain.Sex;
+import me.sa1zer_.sporterbook.domain.model.enums.Sex;
 
 import java.time.LocalDateTime;
 

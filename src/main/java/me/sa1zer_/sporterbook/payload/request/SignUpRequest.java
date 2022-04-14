@@ -5,8 +5,7 @@ import lombok.Data;
 import me.sa1zer_.sporterbook.annotation.Email;
 import me.sa1zer_.sporterbook.annotation.Login;
 import me.sa1zer_.sporterbook.annotation.Phone;
-import me.sa1zer_.sporterbook.domain.Sex;
-import me.sa1zer_.sporterbook.domain.model.enums.Role;
+import me.sa1zer_.sporterbook.domain.model.enums.Sex;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;

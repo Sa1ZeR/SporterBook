@@ -20,4 +20,6 @@ public interface UserService {
     void delete(User user);
 
     User createUserFromRequest(SignUpRequest request);
+
+    List<User> getChildren(User parent);
 }

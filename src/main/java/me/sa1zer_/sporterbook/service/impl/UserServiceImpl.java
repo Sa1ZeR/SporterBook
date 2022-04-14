@@ -4,13 +4,13 @@ import me.sa1zer_.sporterbook.domain.model.User;
 import me.sa1zer_.sporterbook.domain.model.enums.Role;
 import me.sa1zer_.sporterbook.payload.request.SignUpRequest;
 import me.sa1zer_.sporterbook.repository.UserRepository;
-import me.sa1zer_.sporterbook.service.UserAttributeService;
 import me.sa1zer_.sporterbook.service.UserService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.ZoneId;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -18,13 +18,11 @@ public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
     private final BCryptPasswordEncoder passwordEncoder;
-    private final UserAttributeService attributeService;
 
-    public UserServiceImpl(UserRepository userRepository, BCryptPasswordEncoder passwordEncoder,
-                           UserAttributeService attributeService) {
+    public UserServiceImpl(UserRepository userRepository, BCryptPasswordEncoder passwordEncoder
+                           ) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
-        this.attributeService = attributeService;
     }
 
     public User findUserByLoginOrEmail(String login, String email) {
@@ -58,7 +56,6 @@ public class UserServiceImpl implements UserService {
         userRepository.delete(user);
     }
 
-    //todo refactoring to builder pattern
     @Override
     public User createUserFromRequest(SignUpRequest request) {
         User user = new User();
@@ -75,10 +72,14 @@ public class UserServiceImpl implements UserService {
                 .atZone(ZoneId.systemDefault())
                 .toLocalDateTime());
 
-        user.getAttributes().add(
-                attributeService.createUserAttribute(user, Role.USER));
+        user.getRoles().add(Role.USER);
         user.setActive(true);
 
         return save(user);
+    }
+
+    @Override
+    public List<User> getChildren(User parent) {
+        return new ArrayList<>(parent.getChildren());
     }
 }

@@ -1,11 +1,13 @@
 package me.sa1zer_.sporterbook.domain.model;
 
-import lombok.*;
-import me.sa1zer_.sporterbook.domain.Sex;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.RequiredArgsConstructor;
+import me.sa1zer_.sporterbook.domain.model.enums.Sex;
 import me.sa1zer_.sporterbook.domain.model.base.BaseEntity;
+import me.sa1zer_.sporterbook.domain.model.enums.Role;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
@@ -49,8 +51,10 @@ public class User extends BaseEntity {
     @Column(columnDefinition = "VARCHAR(13)")
     protected String phone;
 
-    @OneToMany(mappedBy = "user", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    private Set<UserAttribute> attributes = new HashSet<>();
+    @ElementCollection(targetClass = Role.class)
+    @CollectionTable(name = "user_roles", joinColumns = @JoinColumn(name="user_id"))
+    @Enumerated
+    private Set<Role> roles = new HashSet<>();
 
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(name = "user_children", joinColumns = {@JoinColumn(name = "parent_id")},
