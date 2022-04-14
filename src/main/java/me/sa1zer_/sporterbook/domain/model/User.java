@@ -57,7 +57,7 @@ public class User extends BaseEntity {
     private Set<Role> roles = new HashSet<>();
 
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    @JoinTable(name = "user_children", joinColumns = {@JoinColumn(name = "parent_id")},
+    @JoinTable(name = "api_user_children", joinColumns = {@JoinColumn(name = "parent_id")},
             inverseJoinColumns = {@JoinColumn(name = "child_id")})
     private Set<User> children = new HashSet<>();
 
