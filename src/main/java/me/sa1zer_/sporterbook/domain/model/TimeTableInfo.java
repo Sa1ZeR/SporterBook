@@ -27,8 +27,4 @@ public class TimeTableInfo extends BaseEntity {
     @ManyToOne(cascade = {CascadeType.MERGE})
     @JoinColumn(name = "category_id")
     private TimeTableCategory category;
-
-    @ManyToOne(cascade = {CascadeType.MERGE})
-    @JoinColumn(name = "user_id", nullable = false)
-    private User user; //for who
 }

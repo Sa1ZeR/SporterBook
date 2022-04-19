@@ -19,6 +19,6 @@ public class TimeTabletVisit extends BaseEntity {
     private User student;
 
     @OneToOne()
-    @JoinColumn(name = "date")
+    @JoinColumn(name = "date_id")
     private TimeTableInfo timeTableInfo;
 }

@@ -16,6 +16,4 @@ public interface TimeTableInfoRepository extends JpaRepository<TimeTableInfo, Lo
     List<TimeTableInfo> findByRoom(Room room);
 
     List<TimeTableInfo> findByTimeTable(TimeTable timeTable);
-
-    List<TimeTableInfo> findByUser(User user);
 }

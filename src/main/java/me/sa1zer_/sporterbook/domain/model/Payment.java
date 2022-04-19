@@ -19,18 +19,16 @@ public class Payment extends BaseEntity {
     private SportSection section;
 
     @ManyToOne
+    @JoinColumn(name = "payed_by_id", nullable = false)
+    private User payedBy;
+
+    @ManyToOne
     @JoinColumn(name = "student_id", nullable = false)
     private User student;
 
-    @Column(name = "user_id")
-    private Long userId;
-
-    @Enumerated
-    private Role role;
-
-    @Column(name = "start_date")
+    @Column(name = "start_date", nullable = false)
     private LocalDateTime startDate;
-    @Column(name = "end_date")
+    @Column(name = "end_date", nullable = false)
     private LocalDateTime endDate;
 
     private double amount;

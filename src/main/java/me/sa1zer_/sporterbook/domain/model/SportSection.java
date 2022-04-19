@@ -25,6 +25,11 @@ public class SportSection extends BaseEntity {
             inverseJoinColumns = {@JoinColumn(name = "tid")})
     private Set<User> trainers = new HashSet<>();
 
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH}, fetch = FetchType.LAZY)
+    @JoinTable(name = "api_students_to_sections", joinColumns = {@JoinColumn(name = "section_id")},
+            inverseJoinColumns = {@JoinColumn(name = "student_id")})
+    private Set<User> students = new HashSet<>();
+
     @Column(columnDefinition = "DECIMAL(10,2)")
     private double price;
 }

@@ -21,11 +21,7 @@ public class SportEvent extends BaseEntity {
     @OneToMany(cascade = {CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
     private Set<User> members = new HashSet<>();
 
-    //todo who?
-
-    @Column(name = "start_date")
-    private LocalDateTime startDate;
-
-    @Column(name = "end_date")
-    private LocalDateTime endDate;
+    @OneToOne()
+    @JoinColumn(name = "tti_id")
+    private TimeTableInfo timeTableInfo;
 }

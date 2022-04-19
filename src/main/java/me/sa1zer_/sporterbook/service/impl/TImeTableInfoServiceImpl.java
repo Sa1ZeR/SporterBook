@@ -45,11 +45,6 @@ public class TImeTableInfoServiceImpl implements TimeTableInfoService {
     }
 
     @Override
-    public List<TimeTableInfo> findByUser(User user) {
-        return timeTableInfoRepository.findByUser(user);
-    }
-
-    @Override
     public List<TimeTableInfo> findAll() {
         return timeTableInfoRepository.findAll();
     }

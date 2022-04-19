@@ -16,8 +16,6 @@ public interface TimeTableInfoService {
 
     List<TimeTableInfo> findByTimeTable(TimeTable timeTable);
 
-    List<TimeTableInfo> findByUser(User user);
-
     List<TimeTableInfo> findAll();
 
     TimeTableInfo save(TimeTableInfo timeTableInfo);
