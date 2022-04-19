@@ -18,7 +18,9 @@ public class SportEvent extends BaseEntity {
     @Column(nullable = false)
     private String name;
 
-    @OneToMany(cascade = {CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
+    @ManyToMany(cascade = {CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
+    @JoinTable(name = "api_sport_event_members", joinColumns = {@JoinColumn(name = "sport_event_id")},
+            inverseJoinColumns = {@JoinColumn(name = "student_id")})
     private Set<User> members = new HashSet<>();
 
     @OneToOne()

@@ -8,7 +8,7 @@ import javax.persistence.*;
 
 @EqualsAndHashCode(callSuper = true)
 @Entity
-@Table
+@Table(name = "api_timetable_info")
 @Data
 public class TimeTableInfo extends BaseEntity {
 
