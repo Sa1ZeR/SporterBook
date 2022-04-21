@@ -20,5 +20,5 @@ public class TimeTabletVisit extends BaseEntity {
 
     @OneToOne()
     @JoinColumn(name = "date_id")
-    private TimeTableInfo timeTableInfo;
+    private TimeTableInfo date;
 }
