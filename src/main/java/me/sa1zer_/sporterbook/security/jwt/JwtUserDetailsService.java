@@ -10,8 +10,6 @@ import org.springframework.stereotype.Service;
 @Service
 public class JwtUserDetailsService implements UserDetailsService {
 
-    public static final String USERNAME_SPLITTER = "<::>";
-
     //private final Map<Role, HumanRepository<?, ?>> repositories = new ConcurrentHashMap<>();
 
     //private final List<HumanRepository<?, ?>> repositories;

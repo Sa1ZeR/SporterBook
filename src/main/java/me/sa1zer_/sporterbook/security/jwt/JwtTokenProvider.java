@@ -88,9 +88,4 @@ public class JwtTokenProvider {
         JwtUser jwtUser = (JwtUser) userDetailsService.loadUserByUsername(getUser(token));
         return new UsernamePasswordAuthenticationToken(jwtUser, "", jwtUser.getAuthorities());
     }
-
-    @Deprecated
-    public String createLoginWithRole(String username, Role role) {
-        return username + JwtUserDetailsService.USERNAME_SPLITTER + role.name();
-    }
 }
