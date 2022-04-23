@@ -18,6 +18,8 @@ public interface TimeTableInfoService {
 
     List<TimeTableInfo> findAll();
 
+    TimeTableInfo create(TimeTable timeTable, SportSection section, Room room, TimeTableCategory category);
+
     TimeTableInfo save(TimeTableInfo timeTableInfo);
 
     void delete(TimeTableInfo timeTableInfo);

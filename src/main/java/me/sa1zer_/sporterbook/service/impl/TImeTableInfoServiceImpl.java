@@ -50,6 +50,18 @@ public class TImeTableInfoServiceImpl implements TimeTableInfoService {
     }
 
     @Override
+    public TimeTableInfo create(TimeTable timeTable, SportSection section, Room room, TimeTableCategory category) {
+        TimeTableInfo timeTableInfo = new TimeTableInfo();
+
+        timeTableInfo.setTimeTable(timeTable);
+        timeTableInfo.setSection(section);
+        timeTableInfo.setCategory(category);
+        timeTableInfo.setRoom(room);
+
+        return save(timeTableInfo);
+    }
+
+    @Override
     public TimeTableInfo save(TimeTableInfo timeTableInfo) {
         return timeTableInfoRepository.save(timeTableInfo);
     }
