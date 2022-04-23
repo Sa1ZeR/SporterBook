@@ -33,6 +33,15 @@ public class TimeTableCategoryServiceImpl implements TimeTableCategoryService {
     }
 
     @Override
+    public TimeTableCategory create(String name) {
+        TimeTableCategory timeTableCategory = new TimeTableCategory();
+
+        timeTableCategory.setName(name);
+
+        return save(timeTableCategory);
+    }
+
+    @Override
     public TimeTableCategory save(TimeTableCategory category) {
         return categoryRepository.save(category);
     }

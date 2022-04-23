@@ -12,6 +12,8 @@ public interface TimeTableCategoryService {
 
     TimeTableCategory findByName(String name);
 
+    TimeTableCategory create(String name);
+
     TimeTableCategory save(TimeTableCategory category);
 
     void delete(TimeTableCategory category);
