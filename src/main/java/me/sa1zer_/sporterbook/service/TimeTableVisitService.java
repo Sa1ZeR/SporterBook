@@ -25,6 +25,8 @@ public interface TimeTableVisitService {
 
     List<TimeTabletVisit> findByStudentAndVisit(User student, boolean is);
 
+    TimeTabletVisit create(User student, TimeTableInfo date, boolean is);
+
     TimeTabletVisit save(TimeTabletVisit visit);
 
     void delete(TimeTabletVisit visit);

@@ -1,12 +1,13 @@
-package me.sa1zer_.sporterbook.service;
+package me.sa1zer_.sporterbook.service.impl;
 
 import me.sa1zer_.sporterbook.domain.model.SportSection;
 import me.sa1zer_.sporterbook.exception.SportSectionNotFound;
 import me.sa1zer_.sporterbook.repository.SportSectionRepository;
+import me.sa1zer_.sporterbook.service.SportSectionService;
 
 import java.util.List;
 
-public class SportSectionServiceImpl implements SportSectionService{
+public class SportSectionServiceImpl implements SportSectionService {
 
     private final SportSectionRepository sectionRepository;
 

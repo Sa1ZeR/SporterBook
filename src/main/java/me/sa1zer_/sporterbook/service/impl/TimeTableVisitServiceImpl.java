@@ -61,6 +61,17 @@ public class TimeTableVisitServiceImpl implements TimeTableVisitService {
         return visitRepository.findAllByStudentAndVisit(student, is);
     }
 
+    @Override
+    public TimeTabletVisit create(User student, TimeTableInfo date, boolean is) {
+        TimeTabletVisit timeTabletVisit = new TimeTabletVisit();
+
+        timeTabletVisit.setStudent(student);
+        timeTabletVisit.setDate(date);
+        timeTabletVisit.setVisit(is);
+
+        return save(timeTabletVisit);
+    }
+
 
     @Override
     public TimeTabletVisit save(TimeTabletVisit visit) {
