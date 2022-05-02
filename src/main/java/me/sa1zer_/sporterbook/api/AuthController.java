@@ -26,9 +26,10 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
 /**
- * User authentication performed by REST API requests.
+ * User authentication is performed using REST API requests.
  *
  * @author Sa1ZeR
+ * @version 1.0
  */
 @RestController
 @RequestMapping("/api/auth/")
@@ -41,12 +42,15 @@ public class AuthController {
     private final LogService logService;
 
     /**
-     * Create a {@link AuthController} instance with the given resources.
+     * Create a {@link AuthController} instance with the given params.
      *
      * @param userService the service for checking and creating users
      * @param authenticationManager checking the compliance of the entered login data
      * @param tokenProvider Token provider used to authenticate requests
      * @param logService the service for logging users
+     * @see UserService
+     * @see JwtTokenProvider
+     * @see LogService
      */
     public AuthController(UserService userService, AuthenticationManager authenticationManager,
                           JwtTokenProvider tokenProvider, LogService logService) {
@@ -61,6 +65,7 @@ public class AuthController {
      * @param request data for the user's login or email and password
      * @param result checks whether such a user exists (no need to send)
      * @return status "OK" if the user was registered and entered the correct data otherwise an error
+     * @see SignInRequest
      */
     @PostMapping("signin")
     public ResponseEntity<?> signIn(@Valid @RequestBody SignInRequest request, BindingResult result) {
@@ -96,6 +101,7 @@ public class AuthController {
      * @param result checks whether such a user exists (no need to send)
      * @return status "OK" if all the registration data was filled in correctly and the entered
      * login and email do not match with the existing users otherwise an error
+     * @see SignUpRequest
      */
     @PostMapping("signup")
     public ResponseEntity<?> signUp(@Valid @RequestBody SignUpRequest request, BindingResult result) {
