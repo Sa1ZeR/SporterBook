@@ -41,14 +41,12 @@ class UserServiceImplTest {
         user.setPatronymic("Patr");
         user.setLogin("Sa1ZeR_");
         user.setEmail("test@mail.ru");
-        user.setPhone("+79033333333");
         user.setPassword(passwordEncoder.encode("12345678"));
         user.setBirth(LocalDateTime.now());
 
-        when(userRepository.findByLoginOrEmail(Mockito.any(String.class), Mockito.any(String.class)))
-                .thenReturn(java.util.Optional.of(user));
-
-        User find = userService.findUserByLoginOrEmail("Sa1ZeR_", "test@mail.ru");
+        doReturn(java.util.Optional.of(user)).when(userRepository)
+                .findByLoginOrEmail("Sa1ZeR_", "test@mail.ru");
+        User find = userService.findUserByLoginOrEmail("Sda1ZeR_", "tdest@mail.ru");
         assertAll(
                 () -> assertEquals("Sa1ZeR_", find.getLogin()),
                 ()-> assertEquals("test@mail.ru", find.getEmail())
@@ -58,7 +56,7 @@ class UserServiceImplTest {
     @Test
     void findById() {
         User user = new User();
-
+        user.setId(1L);
         user.setFistName("FirstName");
         user.setLastName("LastName");
         user.setPatronymic("Patr");
@@ -69,10 +67,13 @@ class UserServiceImplTest {
         user.setBirth(LocalDateTime.now());
         user.setActive(true);
 
-        when(userRepository.findById(Mockito.any(Long.class)))
-                .thenReturn(java.util.Optional.of(user));
+//        when(userRepository.findById(Mockito.any(Long.class)))
+//                .thenReturn(java.util.Optional.of(user));
 
-        User find = userService.findById(1L);
+        doReturn(java.util.Optional.of(user)).when(userRepository)
+                .findById(1L);
+
+        User find = userService.findById(3L);
 
         assertEquals(1L, find.getId());
 
@@ -106,11 +107,19 @@ class UserServiceImplTest {
         user.setEmail("test@mail.ru");
         user.setPassword(passwordEncoder.encode("12345678"));
 
+        User user1 = new User();
+        user1.setFistName("FirstName");
+        user1.setLastName("LastName");
+        user1.setPatronymic("Patr");
+        user1.setLogin("Sa1ZeR_");
+        user1.setEmail("test@mail.ru");
+        user1.setPassword(passwordEncoder.encode("12345678"));
+
         when(userRepository.save(Mockito.any(User.class)))
                 .thenAnswer(i -> i.getArguments()[0]);
         userService.save(user);
 
-        userService.delete(user);
+        userService.delete(user1);
         verify(userRepository, times(1)).delete(user);
     }
 }

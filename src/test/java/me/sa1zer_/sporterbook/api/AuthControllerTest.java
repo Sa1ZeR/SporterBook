@@ -28,8 +28,6 @@ class AuthControllerTest {
     @MockBean
     private UserRepository userRepository;
 
-    @MockBean
-    private UserAttributeService userAttributeService;
 
     @Test
     void signIn() throws Exception {
