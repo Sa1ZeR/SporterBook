@@ -13,6 +13,7 @@ import me.sa1zer_.sporterbook.payload.request.SignInRequest;
 import me.sa1zer_.sporterbook.payload.request.SignUpRequest;
 import me.sa1zer_.sporterbook.payload.response.MessageResponse;
 import me.sa1zer_.sporterbook.utils.HttpUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.log.LogMessage;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -35,6 +36,9 @@ import javax.validation.Valid;
 @RequestMapping("/api/auth/")
 @CrossOrigin("${common.cors-ip}")
 public class AuthController {
+
+    @Autowired
+    private UserFacade userFacade;
 
     private final UserService userService;
     private final AuthenticationManager authenticationManager;
@@ -81,7 +85,7 @@ public class AuthController {
         User user = userService.findUserByLoginOrEmail(request.getLogin(), request.getLogin());
         logService.newLog(LogConstants.LOG_NEW_USER, user, LogType.COMMON);
 
-        UserDto userDto = UserFacade.userToUserDto(user);
+        UserDto userDto = (UserDto) userFacade.map(user);
         return ResponseEntity.ok(new SuccessLoginResponse(userDto, token));
     }
 
