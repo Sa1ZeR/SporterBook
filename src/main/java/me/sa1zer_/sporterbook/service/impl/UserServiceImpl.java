@@ -2,13 +2,18 @@ package me.sa1zer_.sporterbook.service.impl;
 
 import me.sa1zer_.sporterbook.domain.model.User;
 import me.sa1zer_.sporterbook.domain.model.enums.Role;
+import me.sa1zer_.sporterbook.payload.handler.handle.admin.user.EditRequestHandler;
+import me.sa1zer_.sporterbook.payload.request.EditUserRequest;
 import me.sa1zer_.sporterbook.payload.request.SignUpRequest;
 import me.sa1zer_.sporterbook.repository.UserRepository;
 import me.sa1zer_.sporterbook.service.UserService;
+import org.springframework.data.domain.Pageable;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.security.Principal;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
@@ -36,6 +41,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public User findByPrincipal(Principal principal) {
+        return findUserByLoginOrEmail(principal.getName(), principal.getName());
+    }
+
+    @Override
     public User findById(Long id) {
         return userRepository.findById(id).orElseThrow(
                 () -> new UsernameNotFoundException(String.format("User with id %s not found!", id)));
@@ -44,6 +54,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<User> findAll() {
         return userRepository.findAll();
+    }
+
+    @Override
+    public List<User> findAll(Pageable pageable) {
+        return userRepository.findAll(pageable).toList();
     }
 
     @Override
@@ -81,5 +96,22 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<User> getChildren(User parent) {
         return new ArrayList<>(parent.getChildren());
+    }
+
+    @Override
+    public User updateByRequest(EditUserRequest request) {
+        User user = findById(request.getId());
+
+        user.setFistName(request.getFirstNmae());
+        user.setLastName(request.getLastName());
+        user.setPatronymic(request.getPatronymic());
+        user.setLogin(request.getLogin());
+        user.setEmail(request.getEmail());
+        user.setPassword(passwordEncoder.encode(request.getPassword()));
+        user.setPhone(request.getPhone());
+        user.setSex(request.getSex());
+        user.setRoles(request.getRoles());
+
+        return save(user);
     }
 }

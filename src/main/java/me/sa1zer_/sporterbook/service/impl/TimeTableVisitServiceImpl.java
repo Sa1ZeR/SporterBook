@@ -7,10 +7,11 @@ import me.sa1zer_.sporterbook.exception.TimeTableVisitNotFoundException;
 import me.sa1zer_.sporterbook.repository.TimeTableVisitRepository;
 import me.sa1zer_.sporterbook.service.TimeTableVisitService;
 import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-
+@Service
 public class TimeTableVisitServiceImpl implements TimeTableVisitService {
 
     private final TimeTableVisitRepository visitRepository;
@@ -57,7 +58,7 @@ public class TimeTableVisitServiceImpl implements TimeTableVisitService {
     }
 
     @Override
-    public List<TimeTabletVisit> findByStudentAndVisit(User student, boolean is) {
+    public List<TimeTabletVisit> findAllByStudentAndVisit(User student, boolean is) {
         return visitRepository.findAllByStudentAndVisit(student, is);
     }
 

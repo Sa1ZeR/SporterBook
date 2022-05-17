@@ -23,7 +23,7 @@ public interface TimeTableVisitService {
 
     List<TimeTabletVisit> findByVisit(boolean is);
 
-    List<TimeTabletVisit> findByStudentAndVisit(User student, boolean is);
+    List<TimeTabletVisit> findAllByStudentAndVisit(User student, boolean is);
 
     TimeTabletVisit create(User student, TimeTableInfo date, boolean is);
 

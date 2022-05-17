@@ -24,7 +24,7 @@ public interface TimeTableService {
     List<TimeTable> findByDateStartAndDateEnd(LocalDateTime start, LocalDateTime end,
                                               Pageable pageable);
 
-    TimeTable create(LocalDateTime start, LocalDateTime end, User user);
+    TimeTable create(LocalDateTime start, LocalDateTime end);
 
     TimeTable save(TimeTable timeTable);
 

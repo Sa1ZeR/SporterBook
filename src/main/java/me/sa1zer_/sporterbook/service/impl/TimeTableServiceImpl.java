@@ -59,7 +59,7 @@ public class TimeTableServiceImpl implements TimeTableService {
     }
 
     @Override
-    public TimeTable create(LocalDateTime start, LocalDateTime end, User user) {
+    public TimeTable create(LocalDateTime start, LocalDateTime end) {
         TimeTable timeTable = new TimeTable();
 
         timeTable.setDateStart(start);

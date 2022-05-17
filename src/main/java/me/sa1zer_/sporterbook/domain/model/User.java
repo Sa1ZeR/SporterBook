@@ -51,7 +51,7 @@ public class User extends BaseEntity {
     @Column(columnDefinition = "VARCHAR(13)")
     protected String phone;
 
-    @ElementCollection(targetClass = Role.class)
+    @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
     @CollectionTable(name = "user_roles", joinColumns = @JoinColumn(name="user_id"))
     @Enumerated
     @Column(name = "role")
