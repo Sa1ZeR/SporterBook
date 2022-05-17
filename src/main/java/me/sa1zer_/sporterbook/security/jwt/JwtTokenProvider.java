@@ -71,8 +71,8 @@ public class JwtTokenProvider {
     }
 
     public String getUser(String token) {
-        return Jwts.parser().setSigningKey(secret).parseClaimsJws(token)
-                .getBody().getSubject();
+        return (String) Jwts.parser().setSigningKey(secret).parseClaimsJws(token)
+                .getBody().get("login");
     }
 
     public Long getUserId(String token) {
