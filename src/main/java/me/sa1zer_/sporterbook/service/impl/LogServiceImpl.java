@@ -7,6 +7,7 @@ import me.sa1zer_.sporterbook.domain.model.enums.LogType;
 import me.sa1zer_.sporterbook.domain.model.enums.Role;
 import me.sa1zer_.sporterbook.repository.LogRepository;
 import me.sa1zer_.sporterbook.service.LogService;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -27,13 +28,43 @@ public class LogServiceImpl implements LogService {
     }
 
     @Override
-    public List<Log> findByUser(User user) {
-        return logRepository.findByUserId(user);
+    public List<Log> findALl() {
+        return logRepository.findAll();
     }
 
     @Override
-    public List<Log> findByLogType(LogType type) {
-        return logRepository.findByType(type);
+    public List<Log> findALl(Pageable pageable) {
+        return logRepository.findAll(pageable).toList();
+    }
+
+    @Override
+    public List<Log> findALlByType(LogType logType, Pageable pageable) {
+        return logRepository.findAllByType(logType, pageable);
+    }
+
+    @Override
+    public List<Log> findAllByUser(User user) {
+        return logRepository.findAllByUserId(user);
+    }
+
+    @Override
+    public List<Log> findAllByUser(User user, Pageable pageable) {
+        return logRepository.findAllByUserId(user, pageable);
+    }
+
+    @Override
+    public List<Log> findAllByUserAndLogType(User user, LogType logType) {
+        return logRepository.findAllByUserIdAndType(user, logType);
+    }
+
+    @Override
+    public List<Log> findAllByUserAndLogType(User user, LogType logType, Pageable pageable) {
+        return logRepository.findAllByUserIdAndType(user, logType, pageable);
+    }
+
+    @Override
+    public List<Log> findAllByLogType(LogType type) {
+        return logRepository.findAllByType(type);
     }
 
     @Override
