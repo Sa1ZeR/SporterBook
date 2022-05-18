@@ -2,11 +2,15 @@ package me.sa1zer_.sporterbook.service.impl;
 
 import me.sa1zer_.sporterbook.domain.model.SportSection;
 import me.sa1zer_.sporterbook.exception.SportSectionNotFound;
+import me.sa1zer_.sporterbook.payload.request.SportSectionRequest;
 import me.sa1zer_.sporterbook.repository.SportSectionRepository;
 import me.sa1zer_.sporterbook.service.SportSectionService;
+import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class SportSectionServiceImpl implements SportSectionService {
 
     private final SportSectionRepository sectionRepository;
@@ -25,6 +29,11 @@ public class SportSectionServiceImpl implements SportSectionService {
     @Override
     public List<SportSection> findAll() {
         return sectionRepository.findAll();
+    }
+
+    @Override
+    public List<SportSection> findAll(Pageable pageable) {
+        return sectionRepository.findAll(pageable).toList();
     }
 
     @Override
@@ -73,5 +82,16 @@ public class SportSectionServiceImpl implements SportSectionService {
     @Override
     public void delete(SportSection section) {
         sectionRepository.delete(section);
+    }
+
+    @Override
+    public SportSection updateByRequest(SportSectionRequest request) {
+        SportSection section = findById(request.getId());
+
+        section.setName(request.getName());
+        section.setDesc(request.getDesc());
+        section.setPrice(request.getPrice());
+
+        return save(section);
     }
 }

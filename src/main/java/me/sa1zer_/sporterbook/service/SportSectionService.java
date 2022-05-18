@@ -1,14 +1,20 @@
 package me.sa1zer_.sporterbook.service;
 
 import me.sa1zer_.sporterbook.domain.model.SportSection;
+import me.sa1zer_.sporterbook.payload.handler.ServiceUpdateByRequestHandler;
+import me.sa1zer_.sporterbook.payload.request.SportSectionRequest;
+import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 
-public interface SportSectionService {
+public interface SportSectionService extends
+        ServiceUpdateByRequestHandler<SportSection, SportSectionRequest> {
 
     SportSection findById(Long id);
 
     List<SportSection> findAll();
+
+    List<SportSection> findAll(Pageable pageable);
 
     SportSection findByName(String name);
 
