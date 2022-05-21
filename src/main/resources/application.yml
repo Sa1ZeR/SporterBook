@@ -18,5 +18,7 @@ jwt:
     expired: 3600000 #for production use 10-15 min
 
 common:
-  cors-ip: localhost:8080
+  cors-ip: http://localhost:8080
+  path: uploads
+  news-file-dir: uploads/img/news
 

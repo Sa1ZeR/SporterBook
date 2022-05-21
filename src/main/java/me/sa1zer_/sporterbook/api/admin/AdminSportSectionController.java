@@ -2,14 +2,13 @@ package me.sa1zer_.sporterbook.api.admin;
 
 import me.sa1zer_.sporterbook.domain.model.SportSection;
 import me.sa1zer_.sporterbook.payload.facade.SportSectionMapper;
-import me.sa1zer_.sporterbook.payload.request.SportSectionRequest;
+import me.sa1zer_.sporterbook.payload.request.admin.SportSectionRequest;
 import me.sa1zer_.sporterbook.payload.response.MessageResponse;
 import me.sa1zer_.sporterbook.service.SportSectionService;
 import me.sa1zer_.sporterbook.service.UserService;
 import me.sa1zer_.sporterbook.utils.HttpUtils;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.util.ObjectUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -18,6 +17,7 @@ import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/api/admin/sportsection/")
+@PreAuthorize("hasAuthority('ADMIN')")
 public class AdminSportSectionController {
 
 

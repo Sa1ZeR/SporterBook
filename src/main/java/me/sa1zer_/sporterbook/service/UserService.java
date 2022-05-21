@@ -2,7 +2,7 @@ package me.sa1zer_.sporterbook.service;
 
 import me.sa1zer_.sporterbook.domain.model.User;
 import me.sa1zer_.sporterbook.payload.handler.ServiceUpdateByRequestHandler;
-import me.sa1zer_.sporterbook.payload.request.EditUserRequest;
+import me.sa1zer_.sporterbook.payload.request.admin.EditUserRequest;
 import me.sa1zer_.sporterbook.payload.request.SignUpRequest;
 import org.springframework.data.domain.Pageable;
 

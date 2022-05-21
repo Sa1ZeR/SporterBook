@@ -2,7 +2,7 @@ package me.sa1zer_.sporterbook.service;
 
 import me.sa1zer_.sporterbook.domain.model.SportSection;
 import me.sa1zer_.sporterbook.payload.handler.ServiceUpdateByRequestHandler;
-import me.sa1zer_.sporterbook.payload.request.SportSectionRequest;
+import me.sa1zer_.sporterbook.payload.request.admin.SportSectionRequest;
 import org.springframework.data.domain.Pageable;
 
 import java.util.List;

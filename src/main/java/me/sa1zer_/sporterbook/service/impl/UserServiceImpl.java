@@ -2,13 +2,11 @@ package me.sa1zer_.sporterbook.service.impl;
 
 import me.sa1zer_.sporterbook.domain.model.User;
 import me.sa1zer_.sporterbook.domain.model.enums.Role;
-import me.sa1zer_.sporterbook.payload.handler.handle.admin.user.EditRequestHandler;
-import me.sa1zer_.sporterbook.payload.request.EditUserRequest;
+import me.sa1zer_.sporterbook.payload.request.admin.EditUserRequest;
 import me.sa1zer_.sporterbook.payload.request.SignUpRequest;
 import me.sa1zer_.sporterbook.repository.UserRepository;
 import me.sa1zer_.sporterbook.service.UserService;
 import org.springframework.data.domain.Pageable;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -99,8 +97,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User updateByRequest(EditUserRequest request) {
-        User user = findById(request.getId());
+    public User updateByRequest(EditUserRequest request, User... userArgs) {
+        User user = userArgs[0];
 
         user.setFistName(request.getFirstNmae());
         user.setLastName(request.getLastName());

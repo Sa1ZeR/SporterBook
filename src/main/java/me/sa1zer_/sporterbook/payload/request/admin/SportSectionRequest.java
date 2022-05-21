@@ -1,4 +1,4 @@
-package me.sa1zer_.sporterbook.payload.request;
+package me.sa1zer_.sporterbook.payload.request.admin;
 
 import lombok.Data;
 

@@ -3,17 +3,14 @@ package me.sa1zer_.sporterbook.api.admin;
 import me.sa1zer_.sporterbook.domain.LogConstants;
 import me.sa1zer_.sporterbook.domain.model.User;
 import me.sa1zer_.sporterbook.domain.model.enums.LogType;
-import me.sa1zer_.sporterbook.payload.dto.IUserDto;
 import me.sa1zer_.sporterbook.payload.facade.UserFacade;
-import me.sa1zer_.sporterbook.payload.request.EditUserRequest;
+import me.sa1zer_.sporterbook.payload.request.admin.EditUserRequest;
 import me.sa1zer_.sporterbook.payload.response.MessageResponse;
 import me.sa1zer_.sporterbook.service.LogService;
 import me.sa1zer_.sporterbook.service.UserService;
 import me.sa1zer_.sporterbook.utils.HttpUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.ObjectUtils;
@@ -22,7 +19,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.security.Principal;
-import java.util.List;
 
 @RestController
 @RequestMapping("/api/admin/user/")

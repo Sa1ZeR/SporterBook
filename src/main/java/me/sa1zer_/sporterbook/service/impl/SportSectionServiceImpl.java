@@ -1,8 +1,9 @@
 package me.sa1zer_.sporterbook.service.impl;
 
 import me.sa1zer_.sporterbook.domain.model.SportSection;
+import me.sa1zer_.sporterbook.domain.model.User;
 import me.sa1zer_.sporterbook.exception.SportSectionNotFound;
-import me.sa1zer_.sporterbook.payload.request.SportSectionRequest;
+import me.sa1zer_.sporterbook.payload.request.admin.SportSectionRequest;
 import me.sa1zer_.sporterbook.repository.SportSectionRepository;
 import me.sa1zer_.sporterbook.service.SportSectionService;
 import org.springframework.data.domain.Pageable;
@@ -85,7 +86,7 @@ public class SportSectionServiceImpl implements SportSectionService {
     }
 
     @Override
-    public SportSection updateByRequest(SportSectionRequest request) {
+    public SportSection updateByRequest(SportSectionRequest request, User... user) {
         SportSection section = findById(request.getId());
 
         section.setName(request.getName());
