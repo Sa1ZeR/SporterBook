@@ -8,6 +8,9 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
+/**
+ * The name of the event that takes place at a certain time.
+ */
 @EqualsAndHashCode(callSuper = true)
 @Entity
 @Table(name = "api_timetable_category")

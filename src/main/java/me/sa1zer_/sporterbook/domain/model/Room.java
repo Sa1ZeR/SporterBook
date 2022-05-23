@@ -8,6 +8,9 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
+/**
+ * The rooms in which the sections are held.
+ */
 @EqualsAndHashCode(callSuper = true)
 @Entity
 @Table(name = "api_rooms")

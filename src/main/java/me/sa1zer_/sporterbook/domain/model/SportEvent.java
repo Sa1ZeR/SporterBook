@@ -9,6 +9,9 @@ import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * Events or classes that take place in the section.
+ */
 @EqualsAndHashCode(callSuper = true)
 @Entity
 @Table(name = "api_sport_events")
