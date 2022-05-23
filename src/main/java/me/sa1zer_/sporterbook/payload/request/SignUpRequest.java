@@ -12,6 +12,9 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Date;
 
+/**
+ * The data model obtained from user registration.
+ */
 @Data
 public class SignUpRequest {
 
@@ -22,6 +25,8 @@ public class SignUpRequest {
     private String latName;
 
     @NotBlank(message = "Отчество не может быть пустым")
+    //TODO: отчество может быть пустым, не у всех национальностей оно есть,
+    // вот читай: https://masterok.livejournal.com/6593905.html
     private String patronymic;
 
     @Login
