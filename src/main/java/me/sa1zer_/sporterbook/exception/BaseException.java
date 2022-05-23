@@ -4,6 +4,11 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
+/**
+ * An extensible base exception with an error message.
+ *
+ * @see RuntimeException
+ */
 @EqualsAndHashCode(callSuper = true)
 @Data
 @AllArgsConstructor
