@@ -9,6 +9,9 @@ import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 
+/**
+ * Sections is performed using REST API requests.
+ */
 public class SportSectionController {
 
     private final SportSectionService sportSectionService;
@@ -25,6 +28,12 @@ public class SportSectionController {
         this.mapper = mapper;
     }
 
+    /**
+     *
+     * @param page user's page number
+     * @param num number of the room where the section takes place
+     * @return status "OK" and list of user sections
+     */
     @GetMapping("getAll")
     public ResponseEntity<?> getAll(int page, int num) {
         return ResponseEntity.ok(sportSectionService.findAll(
