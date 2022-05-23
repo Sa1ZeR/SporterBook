@@ -3,7 +3,7 @@ package me.sa1zer_.sporterbook.service.impl;
 import me.sa1zer_.sporterbook.domain.model.News;
 import me.sa1zer_.sporterbook.domain.model.User;
 import me.sa1zer_.sporterbook.exception.NewsNotFoundException;
-import me.sa1zer_.sporterbook.payload.request.admin.UpdateNewRequest;
+import me.sa1zer_.sporterbook.payload.request.admin.UpdateNewsRequest;
 import me.sa1zer_.sporterbook.repository.NewsRepository;
 import me.sa1zer_.sporterbook.service.NewsService;
 import org.springframework.beans.factory.annotation.Value;
@@ -11,10 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.io.File;
 import java.io.IOException;
-import java.security.Principal;
-import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -66,7 +63,7 @@ public class NewsServiceImpl implements NewsService {
     }
 
     @Override
-    public News updateByRequest(UpdateNewRequest request, User... user) {
+    public News updateByRequest(UpdateNewsRequest request, User... user) {
         News news;
         if(request.getId() != null)
             news = findById(request.getId());
