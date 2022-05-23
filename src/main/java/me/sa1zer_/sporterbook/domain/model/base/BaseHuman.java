@@ -7,6 +7,11 @@ import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
 import java.time.LocalDateTime;
 
+/**
+ * Basic extensible database storage model for users.
+ *
+ * @see BaseEntity
+ */
 @EqualsAndHashCode(callSuper = true)
 @MappedSuperclass
 @Data

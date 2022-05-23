@@ -8,6 +8,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 
+/**
+ * Basic Extensible Identifier Entity
+ */
 @MappedSuperclass
 @Data
 @EqualsAndHashCode(of = {"id"})
