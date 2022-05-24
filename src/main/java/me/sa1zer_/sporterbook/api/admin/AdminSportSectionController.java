@@ -2,6 +2,8 @@ package me.sa1zer_.sporterbook.api.admin;
 
 import me.sa1zer_.sporterbook.domain.model.SportSection;
 import me.sa1zer_.sporterbook.payload.facade.SportSectionMapper;
+import me.sa1zer_.sporterbook.payload.request.admin.AddStudentToSectionRequest;
+import me.sa1zer_.sporterbook.payload.request.admin.AddTrainerToSectionRequest;
 import me.sa1zer_.sporterbook.payload.request.admin.SportSectionRequest;
 import me.sa1zer_.sporterbook.payload.response.MessageResponse;
 import me.sa1zer_.sporterbook.service.SportSectionService;
@@ -52,5 +54,31 @@ public class AdminSportSectionController {
         sportSectionService.delete(section);
 
         return ResponseEntity.ok(new MessageResponse("Секция успешно удалена"));
+    }
+
+    @PostMapping("addTrainer")
+    public ResponseEntity<?> addTrainer(@Valid @RequestBody AddTrainerToSectionRequest request,
+                                        BindingResult result) {
+        ResponseEntity<Object> res = HttpUtils.validBindingResult(result);
+        if(!ObjectUtils.isEmpty(res)) return res;
+
+        SportSection section = sportSectionService.findById(request.getSection());
+        section.getTrainers().add(userService.findById(request.getTrainer()));
+        sportSectionService.save(section);
+
+        return ResponseEntity.ok(new MessageResponse("Тренер успешно добавлен!"));
+    }
+
+    @PostMapping("addStudent")
+    public ResponseEntity<?> addStudent(@Valid @RequestBody AddStudentToSectionRequest request,
+                                        BindingResult result) {
+        ResponseEntity<Object> res = HttpUtils.validBindingResult(result);
+        if(!ObjectUtils.isEmpty(res)) return res;
+
+        SportSection section = sportSectionService.findById(request.getSection());
+        section.getStudents().add(userService.findById(request.getStudent()));
+        sportSectionService.save(section);
+
+        return ResponseEntity.ok(new MessageResponse("Студент успешно добавлен!"));
     }
 }
