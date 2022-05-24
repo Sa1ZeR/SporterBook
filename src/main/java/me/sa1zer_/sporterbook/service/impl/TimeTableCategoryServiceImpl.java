@@ -11,7 +11,11 @@ import java.util.List;
 @Service
 public class TimeTableCategoryServiceImpl implements TimeTableCategoryService {
 
-    private TimeTableCategoryRepository categoryRepository;
+    private final TimeTableCategoryRepository categoryRepository;
+
+    public TimeTableCategoryServiceImpl(TimeTableCategoryRepository categoryRepository) {
+        this.categoryRepository = categoryRepository;
+    }
 
     @Override
     public TimeTableCategory findById(Long id) {
