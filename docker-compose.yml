@@ -1,0 +1,26 @@
+version: '3.9'
+services:
+  db:
+    image: postgres:14.2-alpine
+    container_name: postgres
+    ports:
+      - 5432:5432
+    volumes:
+      - ./pg_data:/var/lib/postgresql/data/pgdata
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 123456
+      POSTGRES_DB: sporterbook
+      PGDATA: /var/lib/postgresql/data/pgdata
+    restart: always
+  app:
+    image: bifurcated/sporterbook:v0.0.1
+    container_name: application
+    ports:
+      - 3000:3000
+    environment:
+      POSTGRES_HOST: db
+      JAVA_OPTS: "-XX:+UseContainerSupport -XX:+UseZGC -Xmx418M -Xlog:gc"
+    restart: always
+    links:
+      - db
