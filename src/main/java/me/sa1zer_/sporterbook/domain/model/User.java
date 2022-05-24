@@ -12,6 +12,9 @@ import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * Information about the participant of the section.
+ */
 @EqualsAndHashCode(of = {"fistName", "LastName", "patronymic", "email", "login",
                 "password", "birth", "phone", "created"}, callSuper = true)
 @Entity

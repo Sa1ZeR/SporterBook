@@ -7,6 +7,9 @@ import me.sa1zer_.sporterbook.domain.model.base.BaseEntity;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
+/**
+ * News created by users.
+ */
 @EqualsAndHashCode(of = {"title", "text", "author"}, callSuper = true)
 @Entity
 @Data

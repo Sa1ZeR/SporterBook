@@ -5,8 +5,11 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.constraints.Size;
 
+/**
+ * Data about edited News information.
+ */
 @Data
-public class UpdateNewRequest {
+public class UpdateNewsRequest {
 
     private Long id;
     @Size(min = 3, max = 255)

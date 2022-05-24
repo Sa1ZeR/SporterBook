@@ -9,6 +9,9 @@ import me.sa1zer_.sporterbook.domain.model.enums.Role;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
+/**
+ * A logging of user actions.
+ */
 @EqualsAndHashCode(callSuper = true)
 @Entity
 @Table(name = "api_logs")

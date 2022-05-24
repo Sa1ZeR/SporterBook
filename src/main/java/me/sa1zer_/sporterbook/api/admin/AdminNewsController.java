@@ -2,7 +2,7 @@ package me.sa1zer_.sporterbook.api.admin;
 
 import me.sa1zer_.sporterbook.domain.model.News;
 import me.sa1zer_.sporterbook.domain.model.User;
-import me.sa1zer_.sporterbook.payload.request.admin.UpdateNewRequest;
+import me.sa1zer_.sporterbook.payload.request.admin.UpdateNewsRequest;
 import me.sa1zer_.sporterbook.payload.response.MessageResponse;
 import me.sa1zer_.sporterbook.service.NewsService;
 import me.sa1zer_.sporterbook.service.UserService;
@@ -33,7 +33,7 @@ public class AdminNewsController {
     }
 
     @PostMapping("update")
-    public ResponseEntity<?> update(@Valid UpdateNewRequest request, BindingResult result,
+    public ResponseEntity<?> update(@Valid UpdateNewsRequest request, BindingResult result,
                                     Principal pr) {
         ResponseEntity<Object> response = HttpUtils.validBindingResult(result);
         if(!ObjectUtils.isEmpty(response)) return response;

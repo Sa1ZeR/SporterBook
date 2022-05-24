@@ -5,6 +5,9 @@ import lombok.Data;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
+/**
+ * The data model obtained from user sign in.
+ */
 @Data
 public class SignInRequest {
 

@@ -6,6 +6,9 @@ import me.sa1zer_.sporterbook.domain.model.base.BaseEntity;
 
 import javax.persistence.*;
 
+/**
+ * Visiting members of the section.
+ */
 @EqualsAndHashCode(callSuper = true)
 @Entity
 @Table(name = "api_user_visits")

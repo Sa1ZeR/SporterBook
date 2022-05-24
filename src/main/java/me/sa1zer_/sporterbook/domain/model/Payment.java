@@ -8,6 +8,9 @@ import me.sa1zer_.sporterbook.domain.model.enums.Role;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
+/**
+ * Payment of sections for members.
+ */
 @EqualsAndHashCode(callSuper = true)
 @Entity
 @Table(name = "api_payments")

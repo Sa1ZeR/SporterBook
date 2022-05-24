@@ -7,6 +7,9 @@ import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
+/**
+ * Data about edited section information.
+ */
 @Data
 public class SportSectionRequest {
 

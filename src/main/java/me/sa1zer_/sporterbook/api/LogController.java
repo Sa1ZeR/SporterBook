@@ -15,6 +15,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.security.Principal;
 
+/**
+ * Logging is performed using REST API requests.
+ */
 @RestController
 @RequestMapping("api/log")
 public class LogController {
@@ -29,7 +32,16 @@ public class LogController {
         this.logMapper = logMapper;
     }
 
-
+    /**
+     * GET request to all user logs.
+     * @param page user's page number
+     * @param num number of the room where the section takes place
+     * @param logType type of logging
+     * @param principal login or email user
+     * @return status "OK" and list of user actions
+     *
+     * @see LogType
+     */
     @GetMapping("getAll")
     public ResponseEntity<?> getAll(@RequestParam int page, @RequestParam int num,
                                     @RequestParam(required = false) LogType logType,

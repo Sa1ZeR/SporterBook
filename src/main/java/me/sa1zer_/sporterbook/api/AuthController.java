@@ -29,6 +29,7 @@ import javax.validation.Valid;
 /**
  * User authentication is performed using REST API requests.
  *
+ * @since 0.0.1-SNAPSHOT
  * @author Sa1ZeR
  * @version 1.0
  */

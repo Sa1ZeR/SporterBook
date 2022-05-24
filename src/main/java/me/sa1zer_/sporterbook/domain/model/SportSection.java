@@ -8,6 +8,9 @@ import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * Information about the sections and their members.
+ */
 @EqualsAndHashCode(callSuper = true)
 @Entity
 @Data

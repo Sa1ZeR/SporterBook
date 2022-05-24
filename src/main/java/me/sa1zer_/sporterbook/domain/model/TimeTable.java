@@ -9,6 +9,9 @@ import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * The beginning and end of the event time.
+ */
 @EqualsAndHashCode(callSuper = true)
 @Entity
 @Table(name = "api_timetable")

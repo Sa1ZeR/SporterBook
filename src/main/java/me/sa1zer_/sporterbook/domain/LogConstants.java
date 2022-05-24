@@ -1,5 +1,8 @@
 package me.sa1zer_.sporterbook.domain;
 
+/**
+ * Global constants for logging.
+ */
 public class LogConstants {
 
     public static final String LOG_NEW_USER = "Регистрация аккаунта";
