@@ -8,6 +8,9 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
+/**
+ * Name of the category to schedule for sections.
+ */
 @EqualsAndHashCode(of = {"name"}, callSuper = true)
 @Entity
 @Table(name = "api_timetable_category")
