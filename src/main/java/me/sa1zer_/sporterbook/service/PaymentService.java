@@ -4,6 +4,8 @@ import me.sa1zer_.sporterbook.domain.model.Payment;
 import me.sa1zer_.sporterbook.domain.model.SportSection;
 import me.sa1zer_.sporterbook.domain.model.User;
 
+import java.time.LocalDateTime;
+import java.util.Collection;
 import java.util.List;
 
 public interface PaymentService {
@@ -16,11 +18,15 @@ public interface PaymentService {
 
     List<Payment> findAllByStudent(User user);
 
+    List<Payment> findAllByStudentAndStartDateGreaterThan(User user, LocalDateTime s);
+
     List<Payment> findAll();
 
     List<Payment> findAllBySection(SportSection section);
 
     List<Payment> findAllBySectionAndStudent(SportSection section, User user);
+
+    List<Payment> findAllBySections(Collection<SportSection> sections, LocalDateTime start);
 
     Payment save(Payment payment);
 

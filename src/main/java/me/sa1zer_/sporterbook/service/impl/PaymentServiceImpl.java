@@ -8,6 +8,8 @@ import me.sa1zer_.sporterbook.repository.PaymentRepository;
 import me.sa1zer_.sporterbook.service.PaymentService;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+import java.util.Collection;
 import java.util.List;
 
 @Service
@@ -42,6 +44,11 @@ public class PaymentServiceImpl implements PaymentService {
     }
 
     @Override
+    public List<Payment> findAllByStudentAndStartDateGreaterThan(User user, LocalDateTime s) {
+        return paymentRepository.findAllByStudentAndStartDateGreaterThan(user, s);
+    }
+
+    @Override
     public List<Payment> findAll() {
         return paymentRepository.findAll();
     }
@@ -54,6 +61,11 @@ public class PaymentServiceImpl implements PaymentService {
     @Override
     public List<Payment> findAllBySectionAndStudent(SportSection section, User user) {
         return paymentRepository.findAllBySectionAndStudent(section, user);
+    }
+
+    @Override
+    public List<Payment> findAllBySections(Collection<SportSection> sections, LocalDateTime start) {
+        return paymentRepository.findAllBySections(sections, start);
     }
 
     @Override
