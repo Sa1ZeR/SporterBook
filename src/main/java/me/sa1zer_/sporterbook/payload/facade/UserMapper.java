@@ -7,7 +7,7 @@ import me.sa1zer_.sporterbook.payload.dto.UserDto;
 import org.springframework.stereotype.Component;
 
 @Component
-public class UserFacade implements Mapper<User, IUserDto> {
+public class UserMapper implements Mapper<User, IUserDto> {
 
     @Override
     public IUserDto map(User u) {

@@ -6,7 +6,6 @@ import me.sa1zer_.sporterbook.annotation.Login;
 import me.sa1zer_.sporterbook.annotation.Phone;
 import me.sa1zer_.sporterbook.domain.model.enums.Role;
 import me.sa1zer_.sporterbook.domain.model.enums.Sex;
-import me.sa1zer_.sporterbook.payload.handler.RequestHandleable;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -17,7 +16,7 @@ import java.util.Set;
  * Data about edited user information.
  */
 @Data
-public class EditUserRequest implements RequestHandleable {
+public class EditUserRequest {
 
     @NotBlank
     private Long id;

@@ -3,7 +3,7 @@ package me.sa1zer_.sporterbook.api;
 import me.sa1zer_.sporterbook.domain.LogConstants;
 import me.sa1zer_.sporterbook.domain.model.enums.LogType;
 import me.sa1zer_.sporterbook.payload.dto.UserDto;
-import me.sa1zer_.sporterbook.payload.facade.UserFacade;
+import me.sa1zer_.sporterbook.payload.facade.UserMapper;
 import me.sa1zer_.sporterbook.payload.response.SuccessLoginResponse;
 import me.sa1zer_.sporterbook.security.jwt.JwtTokenProvider;
 import me.sa1zer_.sporterbook.service.LogService;
@@ -14,7 +14,6 @@ import me.sa1zer_.sporterbook.payload.request.SignUpRequest;
 import me.sa1zer_.sporterbook.payload.response.MessageResponse;
 import me.sa1zer_.sporterbook.utils.HttpUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.log.LogMessage;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -39,7 +38,7 @@ import javax.validation.Valid;
 public class AuthController {
 
     @Autowired
-    private UserFacade userFacade;
+    private UserMapper userFacade;
 
     private final UserService userService;
     private final AuthenticationManager authenticationManager;

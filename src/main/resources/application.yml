@@ -15,7 +15,7 @@ spring:
 jwt:
   token:
     secret: TestSecret
-    expired: 3600000 #for production use 10-15 min
+    expired: 360000000000 #for production use 10-15 min
 
 common:
   cors-ip: http://localhost:8080

@@ -65,6 +65,12 @@ public class User extends BaseEntity {
             inverseJoinColumns = {@JoinColumn(name = "child_id")})
     private Set<User> children = new HashSet<>();
 
+    @ManyToMany(mappedBy = "trainers")
+    private Set<SportSection> trainersSections = new HashSet<>();
+
+    @ManyToMany(mappedBy = "students")
+    private Set<SportSection> sections = new HashSet<>();
+
     private LocalDateTime created;
 
     @PrePersist

@@ -6,7 +6,9 @@ import me.sa1zer_.sporterbook.repository.TimeTableInfoRepository;
 import me.sa1zer_.sporterbook.service.TimeTableInfoService;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class TImeTableInfoServiceImpl implements TimeTableInfoService {
@@ -42,6 +44,11 @@ public class TImeTableInfoServiceImpl implements TimeTableInfoService {
     @Override
     public List<TimeTableInfo> findByTimeTable(TimeTable timeTable) {
         return timeTableInfoRepository.findByTimeTable(timeTable);
+    }
+
+    @Override
+    public List<TimeTableInfo> findAllTimeTable(Set<SportSection> sections, LocalDateTime startDate) {
+        return timeTableInfoRepository.findAllTimeTable(sections, startDate);
     }
 
     @Override

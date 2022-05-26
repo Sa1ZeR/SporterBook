@@ -11,9 +11,9 @@ import java.util.stream.Collectors;
 @Component
 public class SportSectionMapper implements Mapper<SportSection, SportSectionDto>{
 
-    private final UserFacade facade;
+    private final UserMapper facade;
 
-    public SportSectionMapper(UserFacade facade) {
+    public SportSectionMapper(UserMapper facade) {
         this.facade = facade;
     }
 

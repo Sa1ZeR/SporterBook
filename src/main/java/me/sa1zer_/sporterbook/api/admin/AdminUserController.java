@@ -3,7 +3,7 @@ package me.sa1zer_.sporterbook.api.admin;
 import me.sa1zer_.sporterbook.domain.LogConstants;
 import me.sa1zer_.sporterbook.domain.model.User;
 import me.sa1zer_.sporterbook.domain.model.enums.LogType;
-import me.sa1zer_.sporterbook.payload.facade.UserFacade;
+import me.sa1zer_.sporterbook.payload.facade.UserMapper;
 import me.sa1zer_.sporterbook.payload.request.admin.EditUserRequest;
 import me.sa1zer_.sporterbook.payload.response.MessageResponse;
 import me.sa1zer_.sporterbook.service.LogService;
@@ -27,7 +27,7 @@ import java.security.Principal;
 public class AdminUserController {
 
     @Autowired
-    private UserFacade userFacade;
+    private UserMapper userFacade;
 
     private final UserService userService;
     private final LogService logService;

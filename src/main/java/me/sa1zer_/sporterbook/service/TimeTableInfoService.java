@@ -2,7 +2,9 @@ package me.sa1zer_.sporterbook.service;
 
 import me.sa1zer_.sporterbook.domain.model.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Set;
 
 public interface TimeTableInfoService {
 
@@ -15,6 +17,8 @@ public interface TimeTableInfoService {
     List<TimeTableInfo> findByRoom(Room room);
 
     List<TimeTableInfo> findByTimeTable(TimeTable timeTable);
+
+    List<TimeTableInfo> findAllTimeTable(Set<SportSection> sections, LocalDateTime localDateTime);
 
     List<TimeTableInfo> findAll();
 
