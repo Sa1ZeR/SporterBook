@@ -72,6 +72,7 @@ public class AuthController {
      * <pre class="code">
      * POST http://localhost:3000/api/auth/signin
      * Content-Type: application/json
+     *
      * {
      *   "login": "springdoc2022",
      *   "password": "parol12345678"
@@ -107,6 +108,7 @@ public class AuthController {
      * <pre class="code">
      * POST http://localhost:3000/api/auth/signup
      * Content-Type: application/json
+     *
      * {
      *   "firstName": "familiay",
      *   "latName": "myname",
