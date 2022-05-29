@@ -1,5 +1,6 @@
 package me.sa1zer_.sporterbook.api.admin;
 
+import me.sa1zer_.sporterbook.domain.model.News;
 import me.sa1zer_.sporterbook.domain.model.Room;
 import me.sa1zer_.sporterbook.payload.request.admin.UpdateRoomRequest;
 import me.sa1zer_.sporterbook.payload.response.MessageResponse;
@@ -9,9 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.util.ObjectUtils;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -19,7 +18,6 @@ import javax.validation.Valid;
 @RequestMapping("/api/admin/room/")
 @PreAuthorize("hasAuthority('ADMIN')")
 public class AdminRoomController {
-
 
     private final RoomService roomService;
 
@@ -44,5 +42,13 @@ public class AdminRoomController {
         roomService.save(room);
 
         return ResponseEntity.ok(new MessageResponse("Зал успешно сохранен!"));
+    }
+
+    @PostMapping("delete/{nId}")
+    public ResponseEntity<?> delete(@PathVariable String nId) {
+        Room room = roomService.findById(Long.parseLong(nId));
+        roomService.delete(room);
+
+        return ResponseEntity.ok(new MessageResponse("Зал успешно удален!"));
     }
 }
