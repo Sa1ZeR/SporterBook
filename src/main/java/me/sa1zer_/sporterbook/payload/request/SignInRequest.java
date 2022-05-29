@@ -11,7 +11,7 @@ import javax.validation.constraints.Size;
 @Data
 public class SignInRequest {
 
-    @Size(min = 3, max = 16, message = "Логин должен быть от 3 до 24 символов")
+    @Size(min = 3, max = 48, message = "Логин должен быть от 3 до 48 символов")
     @NotBlank(message = "Логин или email не может быть пустым")
     private String login;
 
