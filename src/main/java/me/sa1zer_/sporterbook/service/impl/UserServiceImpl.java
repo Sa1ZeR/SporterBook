@@ -2,6 +2,7 @@ package me.sa1zer_.sporterbook.service.impl;
 
 import me.sa1zer_.sporterbook.domain.model.User;
 import me.sa1zer_.sporterbook.domain.model.enums.Role;
+import me.sa1zer_.sporterbook.exception.UserNotFoundException;
 import me.sa1zer_.sporterbook.payload.request.admin.EditUserRequest;
 import me.sa1zer_.sporterbook.payload.request.SignUpRequest;
 import me.sa1zer_.sporterbook.repository.UserRepository;
@@ -46,7 +47,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public User findById(Long id) {
         return userRepository.findById(id).orElseThrow(
-                () -> new UsernameNotFoundException(String.format("User with id %s not found!", id)));
+                () -> new UserNotFoundException(String.format("User with id %s not found!", id)));
     }
 
     @Override

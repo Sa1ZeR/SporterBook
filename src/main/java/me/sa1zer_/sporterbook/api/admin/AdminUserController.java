@@ -46,7 +46,7 @@ public class AdminUserController {
         User user = userService.findById(request.getId());
         User admin = userService.findByPrincipal(principal);
 
-        userService.updateByRequest(request);
+        userService.updateByRequest(request, user);
 
         logService.newLog(String.format(LogConstants.LOG_USER_EDIT, admin.getLogin(),
                 request.getLogin()), admin, LogType.SYSTEM);
