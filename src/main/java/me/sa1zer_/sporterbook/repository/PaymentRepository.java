@@ -24,7 +24,7 @@ public interface PaymentRepository extends JpaRepository<Payment, Long> {
     List<Payment> findAllBySectionAndStudent(SportSection section, User user);
 
     //custom
-    @Query("select p from Payment p where p.section in :sections and p.startDate >= start and p.student in" +
+    @Query("select p from Payment p where p.section in :sections and p.startDate >= :start and p.student in" +
             " (select s.students from SportSection s where s in :sections)")
     List<Payment> findAllBySections(@Param("sections") Collection<SportSection> sections,
                                     @Param("start")LocalDateTime start);

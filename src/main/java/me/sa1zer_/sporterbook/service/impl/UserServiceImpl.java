@@ -100,15 +100,18 @@ public class UserServiceImpl implements UserService {
     public User updateByRequest(EditUserRequest request, User... userArgs) {
         User user = userArgs[0];
 
-        user.setFistName(request.getFirstNmae());
+        user.setFistName(request.getFirstName());
         user.setLastName(request.getLastName());
-        user.setPatronymic(request.getPatronymic());
+        if(request.getPatronymic() != null)
+            user.setPatronymic(request.getPatronymic());
         user.setLogin(request.getLogin());
         user.setEmail(request.getEmail());
-        user.setPassword(passwordEncoder.encode(request.getPassword()));
+        if(request.getPassword() != null)
+            user.setPassword(passwordEncoder.encode(request.getPassword()));
         user.setPhone(request.getPhone());
         user.setSex(request.getSex());
-        user.setRoles(request.getRoles());
+        if(request.getRoles() != null)
+            user.setRoles(request.getRoles());
 
         return save(user);
     }

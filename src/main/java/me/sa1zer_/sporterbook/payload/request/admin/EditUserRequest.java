@@ -18,22 +18,26 @@ import java.util.Set;
 @Data
 public class EditUserRequest {
 
-    @NotBlank
+    @NotNull(message = "id не может быть пустым")
     private Long id;
 
     @Size(min = 3, max = 48, message = "Неверный формат для имени")
-    private String firstNmae;
+    @NotNull(message = "имя не может быть пустым")
+    private String firstName;
 
     @Size(min = 3, max = 48, message = "Неверный формат для фамилии")
+    @NotNull(message = "фамилия не может быть пустым")
     private String lastName;
 
     @Size(min = 3, max = 48, message = "Неверный формат для отчества")
     private String patronymic;
 
     @Email
+    @NotNull(message = "почта не может быть пустой")
     private String email;
 
     @Login
+    @NotNull(message = "логин не может быть пустым")
     private String login;
 
     @Phone
