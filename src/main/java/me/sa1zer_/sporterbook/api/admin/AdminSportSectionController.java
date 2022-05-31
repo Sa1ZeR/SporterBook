@@ -45,7 +45,7 @@ public class AdminSportSectionController {
             sportSectionService.create(request.getName(), request.getDesc(), request.getPrice());
         else sportSectionService.updateByRequest(request);
 
-        return ResponseEntity.ok(new MessageResponse("Секция успешно обновлена"));
+        return ResponseEntity.ok(new MessageResponse("Секция успешно сохранена!"));
     }
 
     @DeleteMapping("delete/{sId}")

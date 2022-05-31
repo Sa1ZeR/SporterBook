@@ -14,10 +14,10 @@ public class UpdateTimeTableRequest {
     private Long id;
 
     @JsonFormat(pattern = "yyyy.MM.dd HH:mm")
-    @NotNull
+    @NotNull(message = "Дата начала занятий не может быть пустой")
     private LocalDateTime start;
 
     @JsonFormat(pattern = "yyyy.MM.dd HH:mm")
-    @NotNull
+    @NotNull(message = "Дата окончания занятий не может быть пустой")
     private LocalDateTime end;
 }

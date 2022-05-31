@@ -41,6 +41,6 @@ public class AdminTimeTableController {
             timeTableService.save(timeTable);
         }
 
-        return ResponseEntity.ok(new MessageResponse("Расписание успешно сохраненио"));
+        return ResponseEntity.ok(new MessageResponse("Расписание успешно сохранено!"));
     }
 }

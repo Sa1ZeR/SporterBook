@@ -9,12 +9,12 @@ public class UpdateTimeTableInfoRequest {
 
     private Long id;
 
-    @NotNull
+    @NotNull(message = "id расписания не может быть пустым")
     private Long timetable;
-    @NotNull
+    @NotNull(message = "секции зала не может быть пустым")
     private Long section;
-    @NotNull
+    @NotNull(message = "id зала не может быть пустым")
     private Long room;
-    @NotNull
+    @NotNull(message = "id категории не может быть пустым")
     private Long category;
 }
