@@ -66,6 +66,17 @@ public class AuthController {
 
     /**
      * POST request to sing in.
+     * <p>
+     * example request:
+     * <pre class="code">
+     * POST http://localhost:3000/api/auth/signin
+     * Content-Type: application/json
+     *
+     * {
+     *   "login": "springdoc2022",
+     *   "password": "parol12345678"
+     * }
+     * </pre>
      * @param request data for the user's login or email and password
      * @param result checks whether such a user exists (no need to send)
      * @return status "OK" if the user was registered and entered the correct data otherwise an error
@@ -91,6 +102,25 @@ public class AuthController {
 
     /**
      * POST request to sign up.
+     * <p>
+     * example request:
+     * <pre class="code">
+     * POST http://localhost:3000/api/auth/signup
+     * Content-Type: application/json
+     *
+     * {
+     *   "firstName": "familiay",
+     *   "latName": "myname",
+     *   "patronymic": "otchestvo",
+     *   "login": "springdoc2022",
+     *   "email": "springdoc2022@gmail.com",
+     *   "password": "parol12345678",
+     *   "passwordConfirm": "parol12345678",
+     *   "phone": "78945613245",
+     *   "birth": "1992.12.31",
+     *   "sex": "1"
+     * }
+     * </pre>
      * @param request data for registration:
      *                first name;
      *                last name;
