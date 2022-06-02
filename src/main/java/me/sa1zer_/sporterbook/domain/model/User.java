@@ -71,6 +71,9 @@ public class User extends BaseEntity {
     @ManyToMany(mappedBy = "students")
     private Set<SportSection> sections = new HashSet<>();
 
+    @ManyToMany(mappedBy = "requests")
+    private Set<SportSection> uRequests = new HashSet<>();
+
     private LocalDateTime created;
 
     @PrePersist

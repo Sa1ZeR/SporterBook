@@ -1,7 +1,9 @@
 package me.sa1zer_.sporterbook.api.admin;
 
 import me.sa1zer_.sporterbook.domain.model.SportSection;
+import me.sa1zer_.sporterbook.domain.model.User;
 import me.sa1zer_.sporterbook.payload.facade.SportSectionMapper;
+import me.sa1zer_.sporterbook.payload.request.admin.AcceptStudentRequest;
 import me.sa1zer_.sporterbook.payload.request.admin.AddStudentToSectionRequest;
 import me.sa1zer_.sporterbook.payload.request.admin.AddTrainerToSectionRequest;
 import me.sa1zer_.sporterbook.payload.request.admin.SportSectionRequest;
@@ -16,6 +18,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.security.Principal;
 
 @RestController
 @RequestMapping("/api/admin/sportsection/")
@@ -80,5 +83,25 @@ public class AdminSportSectionController {
         sportSectionService.save(section);
 
         return ResponseEntity.ok(new MessageResponse("Студент успешно добавлен!"));
+    }
+
+    @PostMapping("acceptStudent")
+    public ResponseEntity<?> changeGroup(@Valid @RequestBody AcceptStudentRequest request,
+                                         BindingResult result) {
+        ResponseEntity<Object> res = HttpUtils.validBindingResult(result);
+        if(!ObjectUtils.isEmpty(res)) return res;
+
+        SportSection sportSection = sportSectionService.findById(request.getId());
+        User user = userService.findById(request.getStudent());
+
+        if(!sportSection.getRequests().contains(user))
+            return ResponseEntity.ok(new MessageResponse("Данный студент не подал заявку на вступление"));
+
+        sportSection.getStudents().add(user);
+        sportSection.getRequests().remove(user);
+
+        sportSectionService.save(sportSection);
+
+        return ResponseEntity.ok(new MessageResponse("Вы успешно приняли запрос на вступление!"));
     }
 }
