@@ -2,10 +2,13 @@ package me.sa1zer_.sporterbook.service.impl;
 
 import me.sa1zer_.sporterbook.domain.model.SportEvent;
 import me.sa1zer_.sporterbook.domain.model.TimeTableInfo;
+import me.sa1zer_.sporterbook.domain.model.User;
 import me.sa1zer_.sporterbook.exception.SportEventNotFound;
 import me.sa1zer_.sporterbook.repository.SportEventRepository;
 import me.sa1zer_.sporterbook.service.SportEventService;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class SportEventServiceImpl implements SportEventService {
@@ -34,6 +37,16 @@ public class SportEventServiceImpl implements SportEventService {
         return sportEventRepository.findBytimeTableInfo(timeTableInfo).orElseThrow(() ->
                 new SportEventNotFound(String.format(
                         "SportEvent with info id %s not found", timeTableInfo.getId())));
+    }
+
+    @Override
+    public List<SportEvent> findAllByStudent(User user) {
+        return sportEventRepository.findAllByStudent(user);
+    }
+
+    @Override
+    public List<SportEvent> findAllByStudentAndTimeTableInfo(User user, TimeTableInfo timeTableInfo) {
+        return sportEventRepository.findAllByStudentAndTimeTableInfo(user, timeTableInfo);
     }
 
     @Override

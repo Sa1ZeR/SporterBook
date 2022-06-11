@@ -6,6 +6,9 @@ spring:
     show-sql: true
     hibernate:
       ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: true
 
   datasource:
     url: jdbc:postgresql://${POSTGRES_HOST:localhost}:5432/sporterbook
