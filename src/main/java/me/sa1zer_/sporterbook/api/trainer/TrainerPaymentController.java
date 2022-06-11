@@ -37,7 +37,7 @@ public class TrainerPaymentController {
                                                              pattern = "yyyy.MM.dd")
                                                              LocalDateTime startDate, Principal principal) {
         User trainer = userService.findByPrincipal(principal);
-        return ResponseEntity.ok(paymentService.findAllBySections(trainer.getSections(), startDate)
+        return ResponseEntity.ok(paymentService.findAllBySections(trainer.getTrainersSections(), startDate)
                 .stream().map(paymentMapper::map).toList());
     }
 

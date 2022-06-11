@@ -52,7 +52,6 @@ public class TrainerTimeTableController {
         ResponseEntity<Object> response = HttpUtils.validBindingResult(result);
         if(!ObjectUtils.isEmpty(response)) return response;
 
-        TimeTabletVisit visit;
         User student = userService.findById(request.getStudent());
         TimeTableInfo timeTableInfo = timeTableInfoService.findById(request.getTtinfo());
         if(request.getId() == null)

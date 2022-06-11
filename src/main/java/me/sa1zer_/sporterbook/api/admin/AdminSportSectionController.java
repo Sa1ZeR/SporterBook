@@ -41,13 +41,16 @@ public class AdminSportSectionController {
     @PostMapping("update")
     public ResponseEntity<?> updateSportSection(@Valid @RequestBody SportSectionRequest request,
                                                      BindingResult result) {
+        //error validation
         ResponseEntity<?> response = HttpUtils.validBindingResult(result);
         if(!ObjectUtils.isEmpty(response)) return response;
 
+        // create new section if id equals null, update exist section
         if(request.getId() == null)
             sportSectionService.create(request.getName(), request.getDesc(), request.getPrice());
         else sportSectionService.updateByRequest(request);
 
+        //return response
         return ResponseEntity.ok(new MessageResponse("Секция успешно сохранена!"));
     }
 
@@ -62,13 +65,18 @@ public class AdminSportSectionController {
     @PostMapping("addTrainer")
     public ResponseEntity<?> addTrainer(@Valid @RequestBody AddTrainerToSectionRequest request,
                                         BindingResult result) {
+        //error validation
         ResponseEntity<Object> res = HttpUtils.validBindingResult(result);
         if(!ObjectUtils.isEmpty(res)) return res;
 
+        //search section in db
         SportSection section = sportSectionService.findById(request.getSection());
+        //add trainer to section
         section.getTrainers().add(userService.findById(request.getTrainer()));
+        //save section in db
         sportSectionService.save(section);
 
+        //return response
         return ResponseEntity.ok(new MessageResponse("Тренер успешно добавлен!"));
     }
 

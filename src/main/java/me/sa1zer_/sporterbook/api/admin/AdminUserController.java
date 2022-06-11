@@ -40,17 +40,22 @@ public class AdminUserController {
     @PostMapping("edit")
     public ResponseEntity<?> editUser(@Valid @RequestBody EditUserRequest request,
                                       BindingResult result, Principal principal) {
+        //error validation
         ResponseEntity<Object> res = HttpUtils.validBindingResult(result);
         if(!ObjectUtils.isEmpty(res)) return res;
 
+        //search user in db
         User user = userService.findById(request.getId());
+        //search admin in db
         User admin = userService.findByPrincipal(principal);
 
-        userService.updateByRequest(request, user);
+        userService.updateByRequest(request, user); //update data
 
+        //save logs
         logService.newLog(String.format(LogConstants.LOG_USER_EDIT, admin.getLogin(),
                 request.getLogin()), admin, LogType.SYSTEM);
 
+        //return response
         return ResponseEntity.ok(new MessageResponse("Пользователь успешно сохранен!"));
     }
 

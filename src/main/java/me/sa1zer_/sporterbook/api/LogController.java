@@ -19,7 +19,7 @@ import java.security.Principal;
  * Logging is performed using REST API requests.
  */
 @RestController
-@RequestMapping("api/log")
+@RequestMapping("api/logs")
 public class LogController {
 
     private final UserService userService;

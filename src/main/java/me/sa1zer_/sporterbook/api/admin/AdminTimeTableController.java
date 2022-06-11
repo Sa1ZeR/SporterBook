@@ -28,19 +28,22 @@ public class AdminTimeTableController {
 
     @RequestMapping("update")
     public ResponseEntity<?> update(@Valid @RequestBody UpdateTimeTableRequest request, BindingResult result) {
+        //error validation
         ResponseEntity<Object> res = HttpUtils.validBindingResult(result);
         if(!ObjectUtils.isEmpty(res)) return res;
 
         TimeTable timeTable;
+        //create new timetable if id equals null
         if(request.getId() == null)
-            timeTable = timeTableService.create(request.getStart(), request.getEnd());
+            timeTableService.create(request.getStart(), request.getEnd());
         else {
+            //update exists timetable
             timeTable = timeTableService.findById(request.getId());
             timeTable.setDateStart(request.getStart());
             timeTable.setDateEnd(request.getEnd());
             timeTableService.save(timeTable);
         }
-
+        //return response
         return ResponseEntity.ok(new MessageResponse("Расписание успешно сохранено!"));
     }
 }
