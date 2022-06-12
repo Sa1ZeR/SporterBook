@@ -44,8 +44,9 @@ public class PaymentServiceImpl implements PaymentService {
     }
 
     @Override
-    public List<Payment> findAllByStudentAndStartDateGreaterThan(User user, LocalDateTime s) {
-        return paymentRepository.findAllByStudentAndStartDateGreaterThan(user, s);
+    public List<Payment> findAllByStudentAndStartDateGreaterThan(User user, Collection<SportSection> sections,
+                                                                 LocalDateTime s) {
+        return paymentRepository.findAllByStudentAndStartDateGreaterThan(user,sections, s);
     }
 
     @Override

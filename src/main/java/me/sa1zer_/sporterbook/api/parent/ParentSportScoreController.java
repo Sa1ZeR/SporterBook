@@ -1,13 +1,13 @@
 package me.sa1zer_.sporterbook.api.parent;
 
-import me.sa1zer_.sporterbook.domain.model.SportEvent;
+import me.sa1zer_.sporterbook.domain.model.SportScore;
 import me.sa1zer_.sporterbook.domain.model.TimeTableInfo;
 import me.sa1zer_.sporterbook.domain.model.User;
 import me.sa1zer_.sporterbook.payload.dto.SportEventDto;
 import me.sa1zer_.sporterbook.payload.dto.UserDto;
 import me.sa1zer_.sporterbook.payload.facade.SportEventMapper;
 import me.sa1zer_.sporterbook.payload.facade.UserMapper;
-import me.sa1zer_.sporterbook.service.SportEventService;
+import me.sa1zer_.sporterbook.service.SportScoreService;
 import me.sa1zer_.sporterbook.service.TimeTableInfoService;
 import me.sa1zer_.sporterbook.service.UserService;
 import org.springframework.http.ResponseEntity;
@@ -26,19 +26,19 @@ import java.util.Set;
 @RestController
 @RequestMapping("/api/parent/timetable/")
 @PreAuthorize("hasAuthority('PARENT')")
-public class ParentSportEventController {
+public class ParentSportScoreController {
 
     private final UserService userService;
-    private final SportEventService sportEventService;
+    private final SportScoreService sportScoreService;
     private final TimeTableInfoService timeTableInfoService;
     private final SportEventMapper eventMapper;
     private final UserMapper userMapper;
 
-    public ParentSportEventController(UserService userService, SportEventService sportEventService,
+    public ParentSportScoreController(UserService userService, SportScoreService sportScoreService,
                                       TimeTableInfoService timeTableInfoService, SportEventMapper eventMapper,
                                       UserMapper userMapper) {
         this.userService = userService;
-        this.sportEventService = sportEventService;
+        this.sportScoreService = sportScoreService;
         this.timeTableInfoService = timeTableInfoService;
         this.eventMapper = eventMapper;
         this.userMapper = userMapper;
@@ -53,12 +53,12 @@ public class ParentSportEventController {
         HashMap<UserDto, List<SportEventDto>> results = new HashMap<>();
 
         for (User student : children) {
-            List<SportEvent> eventResults;
+            List<SportScore> eventResults;
             if (ObjectUtils.isEmpty(sId)) {
-                eventResults = sportEventService.findAllByStudent(student);
+                eventResults = sportScoreService.findAllByStudent(student);
             } else {
                 TimeTableInfo ttInfo = timeTableInfoService.findById(sId);
-                eventResults = sportEventService.findAllByStudentAndTimeTableInfo(student, ttInfo);
+                eventResults = sportScoreService.findAllByStudentAndTimeTableInfo(student, ttInfo);
             }
             results.put((UserDto) userMapper.map(student),
                     eventResults.stream().map(eventMapper::map).toList());

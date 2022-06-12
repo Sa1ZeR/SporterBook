@@ -20,6 +20,9 @@ public interface PaymentService {
 
     List<Payment> findAllByStudentAndStartDateGreaterThan(User user, LocalDateTime s);
 
+    List<Payment> findAllByStudentAndStartDateGreaterThan(User user, Collection<SportSection> sections,
+                                                          LocalDateTime s);
+
     List<Payment> findAll();
 
     List<Payment> findAllBySection(SportSection section);

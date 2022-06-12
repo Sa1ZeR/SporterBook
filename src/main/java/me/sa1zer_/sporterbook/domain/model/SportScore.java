@@ -5,18 +5,15 @@ import lombok.EqualsAndHashCode;
 import me.sa1zer_.sporterbook.domain.model.base.BaseEntity;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
-import java.util.HashSet;
-import java.util.Set;
 
 /**
  * Events or classes that take place in the section.
  */
 @EqualsAndHashCode(callSuper = true)
 @Entity
-@Table(name = "api_sport_events")
+@Table(name = "api_sport_score")
 @Data
-public class SportEvent extends BaseEntity {
+public class SportScore extends BaseEntity {
 
     @Column(nullable = false)
     private String name;
@@ -33,7 +30,7 @@ public class SportEvent extends BaseEntity {
     @Column(nullable = false)
     private int result;
 
-    @Column(nullable = false)
+    @Column(name = "max_result", nullable = false)
     private int maxResult;
 
     @ManyToOne

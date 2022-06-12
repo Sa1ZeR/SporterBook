@@ -42,13 +42,15 @@ public class TrainerPaymentController {
     }
 
     @GetMapping("getStudentPayments")
-    public ResponseEntity<?> getNotPayedStudent(@RequestParam(name = "startDate")
+    public ResponseEntity<?> getNotPayedStudentSection(@RequestParam(name = "startDate")
                                                  @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME,
                                                          pattern = "yyyy.MM.dd")
                                                          LocalDateTime startDate,
                                                 @RequestParam(name="sId") Long sId, Principal principal) {
+        User trainer = userService.findByPrincipal(principal);
         User student = userService.findById(sId);
-        return ResponseEntity.ok(paymentService.findAllByStudentAndStartDateGreaterThan(student, startDate)
+        return ResponseEntity.ok(paymentService.findAllByStudentAndStartDateGreaterThan(student, trainer.getSections(),
+                        startDate)
                 .stream().map(paymentMapper::map).toList());
     }
 }

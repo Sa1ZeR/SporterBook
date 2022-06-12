@@ -1,12 +1,12 @@
 package me.sa1zer_.sporterbook.payload.facade;
 
-import me.sa1zer_.sporterbook.domain.model.SportEvent;
+import me.sa1zer_.sporterbook.domain.model.SportScore;
 import me.sa1zer_.sporterbook.payload.dto.SportEventDto;
 import me.sa1zer_.sporterbook.payload.dto.UserDto;
 import org.springframework.stereotype.Component;
 
 @Component
-public class SportEventMapper implements Mapper<SportEvent, SportEventDto> {
+public class SportEventMapper implements Mapper<SportScore, SportEventDto> {
 
     private final UserMapper userMapper;
     private final TimeTableInfoMapper timeTableInfoMapper;
@@ -17,7 +17,7 @@ public class SportEventMapper implements Mapper<SportEvent, SportEventDto> {
     }
 
     @Override
-    public SportEventDto map(SportEvent from) {
+    public SportEventDto map(SportScore from) {
         return SportEventDto.builder()
                 .id(from.getId())
                 .name(from.getName())

@@ -34,7 +34,7 @@ public class SportSection extends BaseEntity {
     private Set<User> students = new HashSet<>();
 
     @ManyToMany(cascade = {CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
-    @JoinTable(name = "api_requests_to_sections", joinColumns = {@JoinColumn(name = "g_id")},
+    @JoinTable(name = "api_requests_to_sections", joinColumns = {@JoinColumn(name = "s_id")},
             inverseJoinColumns = {@JoinColumn(name = "u_id")})
     private Set<User> requests = new HashSet<>();
 
