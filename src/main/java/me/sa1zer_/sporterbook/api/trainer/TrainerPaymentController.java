@@ -52,7 +52,6 @@ public class TrainerPaymentController {
                                                          LocalDate startDate,
                                                 @RequestParam(name="sId") Long sId, Principal principal) {
         User trainer = userService.findByPrincipal(principal);
-        System.out.println(111);
         User student = userService.findById(sId);
         return ResponseEntity.ok(paymentService.findAllByStudentAndStartDateGreaterThan(student,
                         trainer.getSections(), LocalDateTime.of(startDate, LocalTime.MIN))

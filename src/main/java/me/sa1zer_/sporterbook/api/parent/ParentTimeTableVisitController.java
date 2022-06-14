@@ -39,12 +39,13 @@ public class ParentTimeTableVisitController {
 
     @GetMapping("getVisits")
     public ResponseEntity<?> getVisits(@RequestParam(name = "visit") boolean visit, Principal principal) {
-        User parent = userService.findByPrincipal(principal);
+        User parent = userService.findByPrincipal(principal); //get parent from session
 
-        Set<User> children = parent.getChildren();
+        Set<User> children = parent.getChildren(); //get children
 
         HashMap<UserDto, List<TimeTableVisitDto>> visits = new HashMap<>();
 
+        //get visits
         for(User student : children) {
             List<TimeTableVisitDto> timeTableVisitDtos = timeTableVisitService.
                     findAllByStudentAndVisit(student, visit).stream()
@@ -53,6 +54,7 @@ public class ParentTimeTableVisitController {
             visits.put((UserDto) userMapper.map(student), timeTableVisitDtos);
         }
 
-        return ResponseEntity.ok(visit);
+        //return response
+        return ResponseEntity.ok(visits);
     }
 }

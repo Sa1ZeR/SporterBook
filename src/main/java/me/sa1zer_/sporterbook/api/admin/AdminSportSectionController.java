@@ -73,7 +73,10 @@ public class AdminSportSectionController {
         //search section in db
         SportSection section = sportSectionService.findById(request.getSection());
         //add trainer to section
-        section.getTrainers().add(userService.findById(request.getTrainer()));
+        User trainer = userService.findById(request.getTrainer());
+        section.getTrainers().add(trainer);
+        trainer.getRoles().add(Role.TRAINER);
+
         //save section in db
         sportSectionService.save(section);
 

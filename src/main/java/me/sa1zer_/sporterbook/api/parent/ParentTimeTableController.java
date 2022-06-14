@@ -41,7 +41,7 @@ public class ParentTimeTableController {
     @GetMapping("getTimeTable")
     public ResponseEntity<?> getTimeTable(Principal principal) {
         User parent = userService.findByPrincipal(principal);
-
+        //get curent week
         LocalDateTime now = LocalDateTime.now();
         while (now.getDayOfWeek() != DayOfWeek.SUNDAY){
             now = now.minusDays(1);
@@ -49,14 +49,14 @@ public class ParentTimeTableController {
 
         HashMap<UserDto, List<TimeTableInfoDto>> timetable = new HashMap<>();
 
-        Set<User> children = parent.getChildren();
+        Set<User> children = parent.getChildren(); //get children
 
         for (User student : children) {
             List<TimeTableInfoDto> timeTableInfoDtos = timeTableInfoService.findAllTimeTable(student.getSections(),
                     now).stream().map(timeTableInfoMapper::map).toList();
             timetable.put((UserDto) userMapper.map(student), timeTableInfoDtos);
         }
-
+        //return reponse
         return ResponseEntity.ok(timetable);
     }
 }
