@@ -17,7 +17,7 @@ import java.security.Principal;
 
 @RestController
 @RequestMapping("/api/students/sections/")
-@PreAuthorize("hasAuthority('STUDENT')")
+//@PreAuthorize("hasAuthority('STUDENT')")
 public class StudentSportSectionController {
 
     private final SportSectionService sportSectionService;
@@ -35,26 +35,24 @@ public class StudentSportSectionController {
 
     @PostMapping("sendRequest/{sId}")
     public ResponseEntity<?> sendRequest(@PathVariable String sId, Principal principal)  {
-        SportSection sportSection = sportSectionService.findById(Long.parseLong(sId));
-        User user = userService.findByPrincipal(principal);
+        SportSection sportSection = sportSectionService.findById(Long.parseLong(sId)); //search section in db
+        User user = userService.findByPrincipal(principal); //get user from session
 
-        sportSection.getRequests().add(user);
+        sportSection.getRequests().add(user); //add request
 
-        sportSectionService.save(sportSection);
+        sportSectionService.save(sportSection); //save in db
 
+        //return response
         return ResponseEntity.ok(new MessageResponse("Запрос на вступление успешно отправлен!"));
     }
 
-    /**
-     *
-     * @param page user's page number
-     * @param num number of the room where the section takes place
-     * @return status "OK" and list of user sections
-     */
+
     @GetMapping("getAll")
-    public ResponseEntity<?> getAll(int page, int num) {
-        return ResponseEntity.ok(sportSectionService.findAll(
-                        PageRequest.of(page, num, Sort.by("id").descending()))
+    public ResponseEntity<?> getAll(Principal principal) {
+        User user = userService.findByPrincipal(principal); //get user from session
+
+        //return response
+        return ResponseEntity.ok(user.getSections()
                 .stream().map(sectionMapper::map).toList());
     }
 }

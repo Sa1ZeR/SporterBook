@@ -1,13 +1,12 @@
 package me.sa1zer_.sporterbook.api.student;
 
 import me.sa1zer_.sporterbook.domain.model.SportScore;
+import me.sa1zer_.sporterbook.domain.model.SportSection;
 import me.sa1zer_.sporterbook.domain.model.TimeTableInfo;
 import me.sa1zer_.sporterbook.domain.model.User;
-import me.sa1zer_.sporterbook.payload.facade.SportEventMapper;
-import me.sa1zer_.sporterbook.payload.facade.SportSectionMapper;
+import me.sa1zer_.sporterbook.payload.facade.SportScoreMapper;
+import me.sa1zer_.sporterbook.payload.response.MessageResponse;
 import me.sa1zer_.sporterbook.service.*;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.util.ObjectUtils;
@@ -20,23 +19,25 @@ import java.security.Principal;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/students/sportevent/")
+@RequestMapping("/api/students/sportscore/")
 @PreAuthorize("hasAuthority('STUDENT')")
 public class StudentSportScoreController {
 
     private final UserService userService;
     private final SportScoreService sportScoreService;
     private final TimeTableInfoService timeTableInfoService;
-    private final SportEventMapper eventMapper;
+    private final SportSectionService sportSectionService;
+    private final SportScoreMapper sportScoreMapper;
 
     public StudentSportScoreController(UserService userService,
                                        SportScoreService sportScoreService,
-                                       TimeTableInfoService timeTableInfoService, SportEventMapper eventMapper,
-                                       LogService logService) {
+                                       TimeTableInfoService timeTableInfoService, SportScoreMapper sportScoreMapper,
+                                       LogService logService, SportSectionService sportSectionService) {
         this.userService = userService;
         this.sportScoreService = sportScoreService;
         this.timeTableInfoService = timeTableInfoService;
-        this.eventMapper = eventMapper;
+        this.sportScoreMapper = sportScoreMapper;
+        this.sportSectionService = sportSectionService;
     }
 
     @GetMapping("getSportScore")
@@ -48,11 +49,14 @@ public class StudentSportScoreController {
         if(ObjectUtils.isEmpty(sId)) {
             eventResults = sportScoreService.findAllByStudent(student);
         } else {
-            TimeTableInfo ttInfo = timeTableInfoService.findById(sId);
-            eventResults = sportScoreService.findAllByStudentAndTimeTableInfo(student, ttInfo);
+            SportSection section = sportSectionService.findById(sId);
+            if(!student.getSections().contains(section))
+                return ResponseEntity.ok(new MessageResponse("Вы не занимаетесь в этой секции"));
+
+            eventResults = sportScoreService.findAllByStudentAndSportSection(student, section);
         }
 
-        return ResponseEntity.ok(eventResults.stream().map(eventMapper::map).toList());
+        return ResponseEntity.ok(eventResults.stream().map(sportScoreMapper::map).toList());
     }
 
 }

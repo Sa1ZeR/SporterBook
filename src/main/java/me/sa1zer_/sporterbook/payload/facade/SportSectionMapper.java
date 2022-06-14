@@ -21,9 +21,10 @@ public class SportSectionMapper implements Mapper<SportSection, SportSectionDto>
     public SportSectionDto map(SportSection from) {
         SportSectionDto dto = new SportSectionDto();
 
+        dto.setId(from.getId());
         dto.setName(from.getName());
         dto.setDesc(from.getDesc());
-        dto.setPrice(dto.getPrice());
+        dto.setPrice(from.getPrice());
 
         Set<IUserDto> students = from.getStudents().stream().map(facade::map)
                 .collect(Collectors.toSet());

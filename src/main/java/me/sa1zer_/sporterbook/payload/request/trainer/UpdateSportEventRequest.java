@@ -12,6 +12,10 @@ public class UpdateSportEventRequest {
     private Long id;
     @NotNull(message = "Id студента не может быть пустым")
     private Long student;
+
+    @NotNull(message = "Id секции не может быть пустым")
+    private Long section;
+
     @NotNull(message = "Id расписания не может быть пустым")
     private Long tti;
 

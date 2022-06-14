@@ -5,7 +5,7 @@ import me.sa1zer_.sporterbook.domain.model.TimeTableInfo;
 import me.sa1zer_.sporterbook.domain.model.User;
 import me.sa1zer_.sporterbook.payload.dto.SportEventDto;
 import me.sa1zer_.sporterbook.payload.dto.UserDto;
-import me.sa1zer_.sporterbook.payload.facade.SportEventMapper;
+import me.sa1zer_.sporterbook.payload.facade.SportScoreMapper;
 import me.sa1zer_.sporterbook.payload.facade.UserMapper;
 import me.sa1zer_.sporterbook.service.SportScoreService;
 import me.sa1zer_.sporterbook.service.TimeTableInfoService;
@@ -31,11 +31,11 @@ public class ParentSportScoreController {
     private final UserService userService;
     private final SportScoreService sportScoreService;
     private final TimeTableInfoService timeTableInfoService;
-    private final SportEventMapper eventMapper;
+    private final SportScoreMapper eventMapper;
     private final UserMapper userMapper;
 
     public ParentSportScoreController(UserService userService, SportScoreService sportScoreService,
-                                      TimeTableInfoService timeTableInfoService, SportEventMapper eventMapper,
+                                      TimeTableInfoService timeTableInfoService, SportScoreMapper eventMapper,
                                       UserMapper userMapper) {
         this.userService = userService;
         this.sportScoreService = sportScoreService;
@@ -44,8 +44,8 @@ public class ParentSportScoreController {
         this.userMapper = userMapper;
     }
 
-    @GetMapping("getSportEvents")
-    public ResponseEntity<?> getSportEvents(@RequestParam(name = "sId", required = false) Long sId,
+    @GetMapping("getSportScore")
+    public ResponseEntity<?> getSportScore(@RequestParam(name = "sId", required = false) Long sId,
                                             Principal principal) {
         User parent = userService.findByPrincipal(principal);
         Set<User> children = parent.getChildren();

@@ -1,6 +1,7 @@
 package me.sa1zer_.sporterbook.service.impl;
 
 import me.sa1zer_.sporterbook.domain.model.SportScore;
+import me.sa1zer_.sporterbook.domain.model.SportSection;
 import me.sa1zer_.sporterbook.domain.model.TimeTableInfo;
 import me.sa1zer_.sporterbook.domain.model.User;
 import me.sa1zer_.sporterbook.exception.SportEventNotFound;
@@ -47,6 +48,11 @@ public class SportScoreServiceImpl implements SportScoreService {
     @Override
     public List<SportScore> findAllByStudentAndTimeTableInfo(User user, TimeTableInfo timeTableInfo) {
         return sportScoreRepository.findAllByStudentAndTimeTableInfo(user, timeTableInfo);
+    }
+
+    @Override
+    public List<SportScore> findAllByStudentAndSportSection(User user, SportSection sportSection) {
+        return sportScoreRepository.findAllByStudentAndSportSection(user, sportSection);
     }
 
     @Override

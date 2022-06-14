@@ -49,21 +49,22 @@ public class TrainerTimeTableController {
     @PostMapping("acceptVisit")
     public ResponseEntity<?> acceptVisit(@Valid @RequestBody AcceptVisitRequest request,
                                          BindingResult result) {
-        ResponseEntity<Object> response = HttpUtils.validBindingResult(result);
+        ResponseEntity<Object> response = HttpUtils.validBindingResult(result); //error validations
         if(!ObjectUtils.isEmpty(response)) return response;
 
-        User student = userService.findById(request.getStudent());
-        TimeTableInfo timeTableInfo = timeTableInfoService.findById(request.getTtinfo());
+        User student = userService.findById(request.getStudent()); //search student in db
+        TimeTableInfo timeTableInfo = timeTableInfoService.findById(request.getTtinfo()); //search tti in db
         if(request.getId() == null)
-            visitService.create(student, timeTableInfo, request.isVisit());
+            visitService.create(student, timeTableInfo, request.isVisit()); //create new instance if id equals null
         else {
-            TimeTabletVisit visitItem = visitService.findById(request.getId());
+            TimeTabletVisit visitItem = visitService.findById(request.getId()); //if id not null, search ttv in db
             visitItem.setDate(timeTableInfo);
             visitItem.setStudent(student);
             visitItem.setVisit(request.isVisit());
             visitService.save(visitItem);
         }
 
+        //return response
         return ResponseEntity.ok(new MessageResponse("Студент успешно отмечен!"));
     }
 

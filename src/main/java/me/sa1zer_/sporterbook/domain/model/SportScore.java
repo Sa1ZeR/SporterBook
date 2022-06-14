@@ -34,6 +34,9 @@ public class SportScore extends BaseEntity {
     private int maxResult;
 
     @ManyToOne
+    private SportSection sportSection;
+
+    @ManyToOne
     @JoinColumn(nullable = false)
     private User trainer;
 

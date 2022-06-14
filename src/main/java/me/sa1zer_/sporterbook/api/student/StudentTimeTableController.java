@@ -33,14 +33,16 @@ public class StudentTimeTableController {
 
     @GetMapping("getTimeTable")
     public ResponseEntity<?> getTimeTable(Principal principal) {
-        User student = userService.findByPrincipal(principal);
-        Set<SportSection> sections = student.getSections();
+        User student = userService.findByPrincipal(principal); //get student fron session
+        Set<SportSection> sections = student.getSections(); //get all user's sections
 
+        //get current week
         LocalDateTime now = LocalDateTime.now();
         while (now.getDayOfWeek() != DayOfWeek.SUNDAY){
             now = now.minusDays(1);
         }
 
+        //return response
         return ResponseEntity.ok(timeTableInfoService.findAllTimeTable(sections, now).stream()
                 .map(timeTableInfoMapper::map).toList());
     }

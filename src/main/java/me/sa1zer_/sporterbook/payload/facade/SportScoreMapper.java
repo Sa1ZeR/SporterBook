@@ -6,14 +6,17 @@ import me.sa1zer_.sporterbook.payload.dto.UserDto;
 import org.springframework.stereotype.Component;
 
 @Component
-public class SportEventMapper implements Mapper<SportScore, SportEventDto> {
+public class SportScoreMapper implements Mapper<SportScore, SportEventDto> {
 
     private final UserMapper userMapper;
     private final TimeTableInfoMapper timeTableInfoMapper;
+    private final SportSectionMapper sportSectionMapper;
 
-    public SportEventMapper(UserMapper userMapper, TimeTableInfoMapper timeTableInfoMapper) {
+    public SportScoreMapper(UserMapper userMapper, TimeTableInfoMapper timeTableInfoMapper,
+                            SportSectionMapper sportSectionMapper) {
         this.userMapper = userMapper;
         this.timeTableInfoMapper = timeTableInfoMapper;
+        this.sportSectionMapper = sportSectionMapper;
     }
 
     @Override
@@ -26,6 +29,7 @@ public class SportEventMapper implements Mapper<SportScore, SportEventDto> {
                 .maxResult(from.getMaxResult())
                 .trainer((UserDto) userMapper.map(from.getTrainer()))
                 .timeTableInfo(timeTableInfoMapper.map(from.getTimeTableInfo()))
+                .sportSectionDto(sportSectionMapper.map(from.getSportSection()))
                 .build();
     }
 }

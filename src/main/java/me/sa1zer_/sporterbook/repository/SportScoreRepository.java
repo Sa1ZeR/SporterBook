@@ -1,6 +1,7 @@
 package me.sa1zer_.sporterbook.repository;
 
 import me.sa1zer_.sporterbook.domain.model.SportScore;
+import me.sa1zer_.sporterbook.domain.model.SportSection;
 import me.sa1zer_.sporterbook.domain.model.TimeTableInfo;
 import me.sa1zer_.sporterbook.domain.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -17,4 +18,6 @@ public interface SportScoreRepository extends JpaRepository<SportScore, Long> {
     List<SportScore> findAllByStudent(User student);
 
     List<SportScore> findAllByStudentAndTimeTableInfo(User student, TimeTableInfo timeTableInfo);
+
+    List<SportScore> findAllByStudentAndSportSection(User student, SportSection sportSection);
 }

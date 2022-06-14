@@ -2,6 +2,7 @@ package me.sa1zer_.sporterbook.api.admin;
 
 import me.sa1zer_.sporterbook.domain.model.SportSection;
 import me.sa1zer_.sporterbook.domain.model.User;
+import me.sa1zer_.sporterbook.domain.model.enums.Role;
 import me.sa1zer_.sporterbook.payload.facade.SportSectionMapper;
 import me.sa1zer_.sporterbook.payload.request.admin.AcceptStudentRequest;
 import me.sa1zer_.sporterbook.payload.request.admin.AddStudentToSectionRequest;
@@ -106,8 +107,10 @@ public class AdminSportSectionController {
             return ResponseEntity.ok(new MessageResponse("Данный студент не подал заявку на вступление"));
 
         sportSection.getStudents().add(user);
+        user.getRoles().add(Role.STUDENT);
         sportSection.getRequests().remove(user);
 
+        userService.save(user);
         sportSectionService.save(sportSection);
 
         return ResponseEntity.ok(new MessageResponse("Вы успешно приняли запрос на вступление!"));

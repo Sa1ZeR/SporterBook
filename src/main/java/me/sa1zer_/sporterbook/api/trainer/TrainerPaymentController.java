@@ -4,6 +4,7 @@ import me.sa1zer_.sporterbook.domain.model.User;
 import me.sa1zer_.sporterbook.payload.facade.PaymentMapper;
 import me.sa1zer_.sporterbook.service.PaymentService;
 import me.sa1zer_.sporterbook.service.UserService;
+import org.hibernate.type.descriptor.java.LocalDateTimeJavaDescriptor;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -13,7 +14,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.security.Principal;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 @RestController
 @RequestMapping("/api/trainer/payment/")
@@ -32,25 +35,27 @@ public class TrainerPaymentController {
     }
 
     @GetMapping("getStudentsPayments")
-    public ResponseEntity<?> getNotPayedStudents(@RequestParam(name = "startDate")
-                                                     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME,
+    public ResponseEntity<?> getPayedStudents(@RequestParam(name = "startDate")
+                                                     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE,
                                                              pattern = "yyyy.MM.dd")
-                                                             LocalDateTime startDate, Principal principal) {
+                                              LocalDate startDate, Principal principal) {
         User trainer = userService.findByPrincipal(principal);
-        return ResponseEntity.ok(paymentService.findAllBySections(trainer.getTrainersSections(), startDate)
+        return ResponseEntity.ok(paymentService.findAllBySections(trainer.getTrainersSections(),
+                LocalDateTime.of(startDate, LocalTime.MIN))
                 .stream().map(paymentMapper::map).toList());
     }
 
-    @GetMapping("getStudentPayments")
-    public ResponseEntity<?> getNotPayedStudentSection(@RequestParam(name = "startDate")
-                                                 @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME,
+    @GetMapping("getStudentSectionPayments")
+    public ResponseEntity<?> getPayedStudentSection(@RequestParam(name = "startDate")
+                                                 @DateTimeFormat(iso = DateTimeFormat.ISO.DATE,
                                                          pattern = "yyyy.MM.dd")
-                                                         LocalDateTime startDate,
+                                                         LocalDate startDate,
                                                 @RequestParam(name="sId") Long sId, Principal principal) {
         User trainer = userService.findByPrincipal(principal);
+        System.out.println(111);
         User student = userService.findById(sId);
-        return ResponseEntity.ok(paymentService.findAllByStudentAndStartDateGreaterThan(student, trainer.getSections(),
-                        startDate)
+        return ResponseEntity.ok(paymentService.findAllByStudentAndStartDateGreaterThan(student,
+                        trainer.getSections(), LocalDateTime.of(startDate, LocalTime.MIN))
                 .stream().map(paymentMapper::map).toList());
     }
 }
