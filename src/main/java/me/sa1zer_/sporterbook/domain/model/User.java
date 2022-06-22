@@ -65,6 +65,9 @@ public class User extends BaseEntity {
             inverseJoinColumns = {@JoinColumn(name = "child_id")})
     private Set<User> children = new HashSet<>();
 
+    @ManyToMany(mappedBy = "children")
+    private Set<User> parent = new HashSet<>();
+
     @ManyToMany(mappedBy = "trainers")
     private Set<SportSection> trainersSections = new HashSet<>();
 

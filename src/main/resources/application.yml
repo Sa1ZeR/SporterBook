@@ -14,6 +14,12 @@ spring:
     url: jdbc:postgresql://${POSTGRES_HOST:localhost}:5432/sporterbook
     username: postgres
     password: 123456
+  mail:
+    host: smtp.yandex.ru
+    username: uw@dru.su
+    password: 12345678
+    port: 465
+    protocol: smtps
 
 jwt:
   token:

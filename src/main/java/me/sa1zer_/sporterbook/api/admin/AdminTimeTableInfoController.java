@@ -66,6 +66,4 @@ public class AdminTimeTableInfoController {
 
         return ResponseEntity.ok(new MessageResponse("Информация для расписания сохранена"));
     }
-
-
 }
